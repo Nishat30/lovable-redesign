@@ -22,16 +22,8 @@ interface NavItem {
 const navItems: NavItem[] = [
   { name: "Home", href: "/", isRoute: true },
   { name: "Academy", href: "/academy", isRoute: true },
+  { name: "Media Coverage", href: "/media-coverage", isRoute: true },
   { name: "Resources", href: "#resources" },
-  {
-    name: "Programs",
-    href: "#programs",
-    children: [
-      { name: "GFSRD Global", href: "#global" },
-      { name: "Regional Initiatives", href: "#regional" },
-      { name: "SDG Localization", href: "#sdg" },
-    ],
-  },
   { name: "Events", href: "#events" },
   { name: "About", href: "#about" },
   { name: "Contact", href: "#contact" },
