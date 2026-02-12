@@ -5,7 +5,7 @@ import { useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import mediaCoverageData from "@/data/mediaCoverage.json";
 
-const CATEGORIES = ["General News", "Conferences", "Partnerships", "Events"];
+const CATEGORIES = ["General News", "Conferences", "Partnerships", "Events"] as const;
 
 export default function MediaCoverage() {
   const featured = mediaCoverageData.articles.slice(0, 5);
