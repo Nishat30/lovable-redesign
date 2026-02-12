@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft, Newspaper, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
-import { motion } from "framer-motion";
-import { useState, useCallback, useEffect } from "react";
-import useEmblaCarousel from "embla-carousel-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef, useCallback } from "react";
 import mediaCoverageData from "@/data/mediaCoverage.json";
 
 const SLIDE_IMAGES = [
@@ -17,27 +16,32 @@ export default function MediaCoverage() {
   const sidebarNews = mediaCoverageData.articles.slice(0, 6);
   const remaining = mediaCoverageData.articles.slice(6);
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setCurrentSlide(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
+  const go = useCallback((next: number, dir: number) => {
+    setDirection(dir);
+    setCurrent(next);
+  }, []);
 
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on("select", onSelect);
-    return () => { emblaApi.off("select", onSelect); };
-  }, [emblaApi, onSelect]);
+  const goPrev = () => go((current - 1 + SLIDE_IMAGES.length) % SLIDE_IMAGES.length, -1);
+  const goNext = () => go((current + 1) % SLIDE_IMAGES.length, 1);
 
   // Auto-play
   useEffect(() => {
-    if (!emblaApi) return;
-    const interval = setInterval(() => emblaApi.scrollNext(), 4000);
+    const interval = setInterval(() => {
+      setDirection(1);
+      setCurrent((c) => (c + 1) % SLIDE_IMAGES.length);
+    }, 4000);
     return () => clearInterval(interval);
-  }, [emblaApi]);
+  }, []);
+
+  const variants = {
+    enter: (dir: number) => ({ x: dir > 0 ? "100%" : "-100%", opacity: 0 }),
+    center: { x: 0, opacity: 1 },
+    exit: (dir: number) => ({ x: dir > 0 ? "-100%" : "100%", opacity: 0 }),
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -65,41 +69,44 @@ export default function MediaCoverage() {
         {/* Image Slider + Sidebar News */}
         <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6 mb-10">
           {/* Image Slider */}
-          <div className="relative rounded-xl overflow-hidden">
-            <div ref={emblaRef} className="overflow-hidden">
-              <div className="flex">
-                {SLIDE_IMAGES.map((src, i) => (
-                  <div key={i} className="min-w-0 shrink-0 grow-0 basis-full">
-                    <img
-                      src={src}
-                      alt={`Slide ${i + 1}`}
-                      className="w-full h-[280px] md:h-[380px] object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="relative rounded-xl overflow-hidden h-[280px] md:h-[380px] bg-muted">
+            <AnimatePresence initial={false} custom={direction} mode="popLayout">
+              <motion.img
+                key={current}
+                src={SLIDE_IMAGES[current]}
+                alt={`Slide ${current + 1}`}
+                custom={direction}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </AnimatePresence>
+
             {/* Nav buttons */}
             <button
-              onClick={() => emblaApi?.scrollPrev()}
+              onClick={goPrev}
               className="absolute left-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-background/80 backdrop-blur flex items-center justify-center hover:bg-background transition"
             >
               <ChevronLeft className="h-5 w-5 text-foreground" />
             </button>
             <button
-              onClick={() => emblaApi?.scrollNext()}
+              onClick={goNext}
               className="absolute right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-background/80 backdrop-blur flex items-center justify-center hover:bg-background transition"
             >
               <ChevronRight className="h-5 w-5 text-foreground" />
             </button>
+
             {/* Dots */}
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
               {SLIDE_IMAGES.map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => emblaApi?.scrollTo(i)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all ${
-                    i === currentSlide ? "bg-primary scale-110" : "bg-background/60"
+                  onClick={() => go(i, i > current ? 1 : -1)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                    i === current ? "bg-primary scale-125" : "bg-background/60"
                   }`}
                 />
               ))}
