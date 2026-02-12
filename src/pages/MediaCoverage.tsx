@@ -1,33 +1,43 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Newspaper, Clock, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, Newspaper, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import mediaCoverageData from "@/data/mediaCoverage.json";
 
-const CATEGORIES = ["General News", "Conferences", "Partnerships", "Events"] as const;
+const SLIDE_IMAGES = [
+  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=500&fit=crop",
+  "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&h=500&fit=crop",
+  "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop",
+  "https://images.unsplash.com/photo-1591115765373-5f9cf1da241d?w=800&h=500&fit=crop",
+  "https://images.unsplash.com/photo-1497493292307-31c376b6e479?w=800&h=500&fit=crop",
+];
 
 export default function MediaCoverage() {
-  const featured = mediaCoverageData.articles.slice(0, 5);
-  const remaining = mediaCoverageData.articles.slice(5);
+  const sidebarNews = mediaCoverageData.articles.slice(0, 6);
+  const remaining = mediaCoverageData.articles.slice(6);
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start", slidesToScroll: 1 });
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
-    setCanScrollPrev(emblaApi.canScrollPrev());
-    setCanScrollNext(emblaApi.canScrollNext());
+    setCurrentSlide(emblaApi.selectedScrollSnap());
   }, [emblaApi]);
 
   useEffect(() => {
     if (!emblaApi) return;
     onSelect();
     emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
     return () => { emblaApi.off("select", onSelect); };
   }, [emblaApi, onSelect]);
+
+  // Auto-play
+  useEffect(() => {
+    if (!emblaApi) return;
+    const interval = setInterval(() => emblaApi.scrollNext(), 4000);
+    return () => clearInterval(interval);
+  }, [emblaApi]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -52,54 +62,77 @@ export default function MediaCoverage() {
           </h1>
         </div>
 
-        {/* Featured Slider */}
-        <section className="mb-10">
-          <h2 className="text-primary font-bold text-lg uppercase tracking-wide mb-5">Today's News</h2>
-          <div className="relative">
+        {/* Image Slider + Sidebar News */}
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6 mb-10">
+          {/* Image Slider */}
+          <div className="relative rounded-xl overflow-hidden">
             <div ref={emblaRef} className="overflow-hidden">
-              <div className="flex -ml-5">
-                {featured.map((article) => (
-                  <div key={article.id} className="min-w-0 shrink-0 grow-0 basis-full sm:basis-1/2 lg:basis-1/3 pl-5">
-                    <a href={article.url} className="group block">
-                      <span className="text-xs font-bold text-primary uppercase tracking-wider">General</span>
-                      <h3 className="font-playfair text-base font-bold text-foreground leading-snug mt-1 mb-2 line-clamp-3 group-hover:text-primary transition-colors">
-                        {article.title}
-                      </h3>
-                      <p className="text-xs text-muted-foreground mb-2">POSTED ON 2026-02-12</p>
-                      <p className="text-sm text-muted-foreground line-clamp-4 mb-2">
-                        GFSRD media coverage article about {article.title.slice(0, 60).toLowerCase()}...
-                      </p>
-                      <span className="text-sm text-primary font-medium group-hover:underline">Read More →</span>
-                    </a>
+              <div className="flex">
+                {SLIDE_IMAGES.map((src, i) => (
+                  <div key={i} className="min-w-0 shrink-0 grow-0 basis-full">
+                    <img
+                      src={src}
+                      alt={`Slide ${i + 1}`}
+                      className="w-full h-[280px] md:h-[380px] object-cover"
+                    />
                   </div>
                 ))}
               </div>
             </div>
+            {/* Nav buttons */}
             <button
               onClick={() => emblaApi?.scrollPrev()}
-              disabled={!canScrollPrev}
-              className="absolute -left-3 top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-card border border-border shadow flex items-center justify-center hover:bg-secondary disabled:opacity-30"
+              className="absolute left-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-background/80 backdrop-blur flex items-center justify-center hover:bg-background transition"
             >
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className="h-5 w-5 text-foreground" />
             </button>
             <button
               onClick={() => emblaApi?.scrollNext()}
-              disabled={!canScrollNext}
-              className="absolute -right-3 top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-card border border-border shadow flex items-center justify-center hover:bg-secondary disabled:opacity-30"
+              className="absolute right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-background/80 backdrop-blur flex items-center justify-center hover:bg-background transition"
             >
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-5 w-5 text-foreground" />
             </button>
+            {/* Dots */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+              {SLIDE_IMAGES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => emblaApi?.scrollTo(i)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${
+                    i === currentSlide ? "bg-primary scale-110" : "bg-background/60"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
-        </section>
 
-        {/* Main Content + Sidebar */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8">
-          {/* Articles Grid */}
-          <div>
-            <div className="border-t border-border pt-6 mb-6">
+          {/* Sidebar - 6 News */}
+          <div className="flex flex-col gap-3">
+            <h2 className="font-playfair text-lg font-bold text-foreground mb-1">Latest News</h2>
+            {sidebarNews.map((article, i) => (
+              <motion.a
+                key={article.id}
+                href={article.url}
+                initial={{ opacity: 0, x: 15 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.06, duration: 0.35 }}
+                className="group block p-3 rounded-lg border border-border hover:border-primary/30 hover:bg-secondary/40 transition-all"
+              >
+                <h3 className="text-sm font-semibold text-foreground leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+                  {article.title}
+                </h3>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+
+        {/* Remaining Articles */}
+        {remaining.length > 0 && (
+          <>
+            <div className="border-t border-border pt-8 mb-6">
               <h2 className="font-playfair text-xl font-bold text-foreground">More Coverage</h2>
             </div>
-            <div className="grid sm:grid-cols-2 gap-5">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {remaining.map((article, i) => (
                 <motion.a
                   key={article.id}
@@ -110,46 +143,15 @@ export default function MediaCoverage() {
                   transition={{ delay: i * 0.03, duration: 0.4 }}
                   className="group block p-5 rounded-xl bg-card border border-border hover:shadow-md hover:border-primary/20 transition-all"
                 >
-                  <span className="text-xs font-bold text-primary uppercase tracking-wider">General</span>
-                  <h3 className="text-sm font-semibold text-foreground leading-snug line-clamp-3 group-hover:text-primary transition-colors mt-1 mb-2">
+                  <h3 className="text-sm font-semibold text-foreground leading-snug line-clamp-3 group-hover:text-primary transition-colors mb-3">
                     {article.title}
                   </h3>
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      GFSRD
-                    </span>
-                    <ExternalLink className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity text-primary" />
-                  </div>
+                  <ExternalLink className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity text-primary" />
                 </motion.a>
               ))}
             </div>
-          </div>
-
-          {/* Sidebar */}
-          <aside className="space-y-6">
-            <div className="rounded-xl border border-border bg-card p-5">
-              <h3 className="font-bold text-sm text-foreground mb-3">Archive:</h3>
-              <input
-                type="month"
-                className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
-                defaultValue="2026-02"
-              />
-            </div>
-            <div className="rounded-xl border border-border bg-card p-5">
-              <h3 className="text-primary font-bold text-sm uppercase tracking-wide mb-4">Categories</h3>
-              <ul className="space-y-3">
-                {CATEGORIES.map((cat) => (
-                  <li key={cat}>
-                    <a href="#" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-                      {cat}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </aside>
-        </div>
+          </>
+        )}
       </main>
     </div>
   );
