@@ -55,7 +55,7 @@ export default function GlobalInitiative() {
             </aside>
 
             {/* Main Content */}
-            <section className="flex-1 min-w-0">
+            <section className="flex-1 min-w-0 flex flex-col items-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeContinent}
@@ -65,14 +65,14 @@ export default function GlobalInitiative() {
                   transition={{ duration: 0.3 }}
                 >
                   {/* Continent Header */}
-                  <div className="bg-gradient-hero text-primary-foreground rounded-xl p-6 mb-8 text-center">
+                  <div className="bg-gradient-hero text-primary-foreground rounded-xl p-6 mb-8 text-center w-full">
                     <Globe className="w-10 h-10 mx-auto mb-2 opacity-80" />
                     <h2 className="font-display text-3xl font-bold">{current.name}</h2>
                   </div>
 
                   {/* Head of Continent */}
                   {current.head && (
-                    <div className="bg-card rounded-xl shadow-card border border-border p-6 mb-8">
+                    <div className="bg-card rounded-xl shadow-card border border-border p-6 mb-8 w-full">
                       <div className="flex flex-col sm:flex-row items-center gap-6">
                         <Link to={`/global/profile/${current.head.id}`}>
                           <div className="w-28 h-28 rounded-full bg-secondary flex items-center justify-center overflow-hidden border-4 border-primary/20 hover:border-primary/50 transition-colors">
@@ -103,7 +103,7 @@ export default function GlobalInitiative() {
                   )}
 
                   {/* Members Grid */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full">
                     {current.members.map((member, i) => (
                       <motion.div
                         key={member.id}
@@ -113,18 +113,18 @@ export default function GlobalInitiative() {
                       >
                         <Link
                           to={`/global/profile/${member.id}`}
-                          className="block bg-card rounded-xl border border-border p-4 text-center hover:shadow-elevated hover:-translate-y-1 transition-all duration-200 group"
+                          className="block bg-card rounded-xl border border-border p-5 text-center hover:shadow-elevated hover:-translate-y-1 transition-all duration-200 group"
                         >
-                          <div className="w-20 h-20 mx-auto rounded-full bg-secondary flex items-center justify-center overflow-hidden mb-3 border-2 border-transparent group-hover:border-primary/30 transition-colors">
+                          <div className="w-24 h-24 mx-auto rounded-full bg-secondary flex items-center justify-center overflow-hidden mb-4 border-3 border-primary/10 group-hover:border-primary/40 transition-colors shadow-soft">
                             {member.image ? (
                               <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
                             ) : (
                               <User className="w-8 h-8 text-muted-foreground" />
                             )}
                           </div>
-                          <h4 className="font-display text-sm font-semibold text-foreground leading-tight">{member.name}</h4>
-                          <p className="text-xs text-accent mt-1">{member.role}</p>
-                          <p className="text-xs text-muted-foreground">{member.country}</p>
+                          <h4 className="font-display text-sm font-semibold text-foreground leading-tight mb-1">{member.name}</h4>
+                          <p className="text-xs text-accent font-medium">{member.role}</p>
+                          <p className="text-xs text-muted-foreground mt-0.5">{member.country}</p>
                         </Link>
                       </motion.div>
                     ))}

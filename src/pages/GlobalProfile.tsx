@@ -57,12 +57,12 @@ export default function GlobalProfile() {
             className="bg-card rounded-2xl shadow-card border border-border overflow-hidden"
           >
             {/* Header banner */}
-            <div className="h-32 bg-gradient-hero relative" />
+            <div className="h-36 bg-gradient-hero relative" />
 
             <div className="px-6 md:px-10 pb-10 -mt-16">
-              <div className="flex flex-col md:flex-row gap-8">
+              <div className="flex flex-col md:flex-row items-start gap-8">
                 {/* Photo */}
-                <div className="w-32 h-32 rounded-2xl bg-secondary border-4 border-card shadow-elevated flex items-center justify-center overflow-hidden shrink-0">
+                <div className="w-32 h-32 rounded-2xl bg-secondary border-4 border-card shadow-elevated flex items-center justify-center overflow-hidden shrink-0 relative z-10">
                   {person.image ? (
                     <img src={person.image} alt={person.name} className="w-full h-full object-cover" />
                   ) : (

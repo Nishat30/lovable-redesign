@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
-import { ArrowLeft, Newspaper, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { Newspaper, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef, useCallback } from "react";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import mediaCoverageData from "@/data/mediaCoverage.json";
 
 const SLIDE_IMAGES = [
@@ -45,17 +46,9 @@ export default function MediaCoverage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-30 bg-background/95 backdrop-blur-sm border-b border-border">
-        <div className="flex items-center justify-between px-4 md:px-6 py-3">
-          <Link to="/" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors">
-            <ArrowLeft className="h-4 w-4" />
-            <span className="font-medium">Back to Home</span>
-          </Link>
-          <span className="font-playfair text-lg font-bold text-primary">GFSRD</span>
-        </div>
-      </header>
+      <Header />
 
-      <main className="container mx-auto px-4 py-8 max-w-7xl">
+      <main className="container mx-auto px-4 py-8 pt-24 max-w-7xl">
         {/* Page Title */}
         <div className="flex items-center gap-4 mb-8">
           <div className="p-3 rounded-xl bg-primary/10 text-primary">
@@ -160,6 +153,7 @@ export default function MediaCoverage() {
           </>
         )}
       </main>
+      <Footer />
     </div>
   );
 }
