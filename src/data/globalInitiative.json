@@ -1,0 +1,78 @@
+{
+  "continents": [
+    {
+      "id": "asia",
+      "name": "Asia",
+      "head": {
+        "id": "maria-christina",
+        "name": "Maria Christina Endarwati",
+        "country": "Indonesia",
+        "role": "Co-Founder & Head, GFSRD-Asia",
+        "bio": "",
+        "phone": "",
+        "email": "asia@gfsrd.net",
+        "image": "",
+        "office": {
+          "name": "Asia Office",
+          "address": "Musi 23A, Malang 65123, East Java-Indonesia"
+        }
+      },
+      "members": [
+        { "id": "sary-tatpaporn", "name": "SARY Tatpaporn", "role": "Country Director", "country": "Laos", "bio": "", "phone": "", "email": "", "image": "" },
+        { "id": "gulsun-kurubacak", "name": "Dr. Gülsün Kurubacak Çakir", "role": "Country Director", "country": "Türkiye", "bio": "", "phone": "", "email": "", "image": "" },
+        { "id": "tolonbek", "name": "Tolonbek", "role": "Country Director", "country": "Kyrgyz Republic", "bio": "", "phone": "", "email": "", "image": "" },
+        { "id": "hazhar-bibas", "name": "Asst. Prof. Dr. Hazhar Bibas", "role": "Country Director", "country": "Iraq", "bio": "", "phone": "", "email": "", "image": "" },
+        { "id": "chan-vicheth", "name": "Chan Vicheth", "role": "Country Director", "country": "Cambodia", "bio": "", "phone": "", "email": "", "image": "" },
+        { "id": "win-myint", "name": "Win Myint", "role": "Country Director", "country": "Myanmar", "bio": "", "phone": "", "email": "", "image": "" },
+        { "id": "prem-adheesh-lekhi", "name": "DR. PREM ADHEESH LEKHI", "role": "Country Director", "country": "Malaysia", "bio": "", "phone": "", "email": "", "image": "" },
+        { "id": "shirdad-mohammadi", "name": "Shirdad Mohammadi", "role": "Country Director", "country": "Afghanistan", "bio": "", "phone": "", "email": "", "image": "" },
+        { "id": "gnanamuthu-bosco-rajah", "name": "GNANAMUTHU BOSCO RAJAH", "role": "Country Director", "country": "Sri Lanka", "bio": "", "phone": "", "email": "", "image": "" },
+        { "id": "jenik-andreas", "name": "Jenik Andreas", "role": "Country Director", "country": "Indonesia", "bio": "", "phone": "", "email": "", "image": "" },
+        { "id": "magelyn-goze", "name": "MAGELYN G. GOZE", "role": "Country Director", "country": "Philippines", "bio": "", "phone": "", "email": "", "image": "" },
+        { "id": "rajendra-uprety", "name": "Dr. Rajendra Uprety", "role": "Country Director", "country": "Nepal", "bio": "", "phone": "", "email": "", "image": "" },
+        { "id": "tshering-wangchuk", "name": "Mr. Tshering Wangchuk", "role": "Country Director", "country": "Bhutan", "bio": "", "phone": "", "email": "", "image": "" },
+        { "id": "sharifur-rahman", "name": "Muhammad Sharifur Rahman", "role": "Country Director", "country": "Bangladesh", "bio": "", "phone": "", "email": "", "image": "" }
+      ]
+    },
+    {
+      "id": "africa",
+      "name": "Africa",
+      "head": null,
+      "members": [
+        { "id": "africa-member-1", "name": "Member Name", "role": "Country Director", "country": "Country", "bio": "", "phone": "", "email": "", "image": "" }
+      ]
+    },
+    {
+      "id": "australia",
+      "name": "Australia",
+      "head": null,
+      "members": [
+        { "id": "australia-member-1", "name": "Member Name", "role": "Country Director", "country": "Country", "bio": "", "phone": "", "email": "", "image": "" }
+      ]
+    },
+    {
+      "id": "north-america",
+      "name": "North America",
+      "head": null,
+      "members": [
+        { "id": "na-member-1", "name": "Member Name", "role": "Country Director", "country": "Country", "bio": "", "phone": "", "email": "", "image": "" }
+      ]
+    },
+    {
+      "id": "europe",
+      "name": "Europe",
+      "head": null,
+      "members": [
+        { "id": "europe-member-1", "name": "Member Name", "role": "Country Director", "country": "Country", "bio": "", "phone": "", "email": "", "image": "" }
+      ]
+    },
+    {
+      "id": "south-america",
+      "name": "South America",
+      "head": null,
+      "members": [
+        { "id": "sa-member-1", "name": "Member Name", "role": "Country Director", "country": "Country", "bio": "", "phone": "", "email": "", "image": "" }
+      ]
+    }
+  ]
+}
