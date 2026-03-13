@@ -107,8 +107,10 @@ export function Footer() {
                     )}
                   </li>
                 ))}
+              </ul>
+            </div>
+          ))}
         </div>
-      </div>
 
         {/* Bottom Bar */}
         <div className="py-6 border-t border-primary-foreground/10 flex flex-col md:flex-row items-center justify-between gap-4">
