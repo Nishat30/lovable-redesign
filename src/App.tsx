@@ -8,6 +8,9 @@ import Academy from "./pages/Academy";
 import MediaCoverage from "./pages/MediaCoverage";
 import GlobalInitiative from "./pages/GlobalInitiative";
 import GlobalProfile from "./pages/GlobalProfile";
+import AboutUs from "./pages/AboutUs";
+import Careers from "./pages/Careers";
+import CountryPage from "./pages/CountryPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +27,9 @@ const App = () => (
           <Route path="/media-coverage" element={<MediaCoverage />} />
           <Route path="/global" element={<GlobalInitiative />} />
           <Route path="/global/profile/:id" element={<GlobalProfile />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/country/:countrySlug" element={<CountryPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
