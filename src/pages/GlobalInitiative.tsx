@@ -142,7 +142,7 @@ export default function GlobalInitiative() {
                           transition={{ delay: i * 0.04, duration: 0.4 }}
                         >
                           <Link
-                            to={`/global/profile/${member.id}`}
+                            to={`/country/${member.country.toLowerCase().replace(/\s+/g, "-")}`}
                             className="block bg-card rounded-2xl border border-border p-5 text-center hover:shadow-elevated hover:-translate-y-1.5 transition-all duration-300 group relative overflow-hidden"
                           >
                             {/* Subtle top accent */}

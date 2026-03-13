@@ -24,10 +24,11 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Facebook, href: "https://facebook.com/gfsrd", label: "Facebook" },
+  { icon: Twitter, href: "https://twitter.com/gfsrd", label: "Twitter" },
+  { icon: Linkedin, href: "https://linkedin.com/company/gfsrd", label: "LinkedIn" },
+  { icon: Instagram, href: "https://instagram.com/gfsrd", label: "Instagram" },
+  { icon: Youtube, href: "https://youtube.com/@gfsrd", label: "YouTube" },
 ];
 
 export function Footer() {
