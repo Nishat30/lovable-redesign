@@ -1,32 +1,34 @@
 import { motion } from "framer-motion";
-import { Globe, Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Globe, Facebook, Twitter, Linkedin, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
 
 const footerLinks = {
   programs: [
-    { name: "GFSRD Academy", href: "#" },
-    { name: "Rural Resources", href: "#" },
-    { name: "Global Initiatives", href: "#" },
-    { name: "SDG Localization", href: "#" },
+    { name: "GFSRD Academy", href: "/academy", isRoute: true },
+    { name: "Global Initiatives", href: "/global", isRoute: true },
+    { name: "Media Coverage", href: "/media-coverage", isRoute: true },
+    { name: "Careers", href: "/careers", isRoute: true },
   ],
   about: [
-    { name: "Our Story", href: "#" },
-    { name: "Team", href: "#" },
-    { name: "Partners", href: "#" },
-    { name: "Careers", href: "#" },
+    { name: "About Us", href: "/about", isRoute: true },
+    { name: "Our Team", href: "/about", isRoute: true },
+    { name: "Partners", href: "#", isRoute: false },
+    { name: "Contact", href: "#contact", isRoute: false },
   ],
   resources: [
-    { name: "Publications", href: "#" },
-    { name: "Research", href: "#" },
-    { name: "Case Studies", href: "#" },
-    { name: "Glossary", href: "#" },
+    { name: "Publications", href: "#", isRoute: false },
+    { name: "Research", href: "#", isRoute: false },
+    { name: "Case Studies", href: "#", isRoute: false },
+    { name: "Glossary", href: "/academy", isRoute: true },
   ],
 };
 
 const socialLinks = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Facebook, href: "https://facebook.com/gfsrd", label: "Facebook" },
+  { icon: Twitter, href: "https://twitter.com/gfsrd", label: "Twitter" },
+  { icon: Linkedin, href: "https://linkedin.com/company/gfsrd", label: "LinkedIn" },
+  { icon: Instagram, href: "https://instagram.com/gfsrd", label: "Instagram" },
+  { icon: Youtube, href: "https://youtube.com/@gfsrd", label: "YouTube" },
 ];
 
 export function Footer() {
@@ -82,53 +84,32 @@ export function Footer() {
           </div>
 
           {/* Links Columns */}
-          <div>
-            <h4 className="font-display font-semibold mb-4">Programs</h4>
-            <ul className="space-y-3">
-              {footerLinks.programs.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-primary-foreground/70 hover:text-accent transition-colors"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-display font-semibold mb-4">About</h4>
-            <ul className="space-y-3">
-              {footerLinks.about.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-primary-foreground/70 hover:text-accent transition-colors"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-display font-semibold mb-4">Resources</h4>
-            <ul className="space-y-3">
-              {footerLinks.resources.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-primary-foreground/70 hover:text-accent transition-colors"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {Object.entries(footerLinks).map(([key, links]) => (
+            <div key={key}>
+              <h4 className="font-display font-semibold mb-4 capitalize">{key}</h4>
+              <ul className="space-y-3">
+                {links.map((link) => (
+                  <li key={link.name}>
+                    {link.isRoute ? (
+                      <Link
+                        to={link.href}
+                        className="text-primary-foreground/70 hover:text-accent transition-colors"
+                      >
+                        {link.name}
+                      </Link>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="text-primary-foreground/70 hover:text-accent transition-colors"
+                      >
+                        {link.name}
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
         {/* Bottom Bar */}

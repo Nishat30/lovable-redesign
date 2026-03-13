@@ -21,12 +21,11 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { name: "Home", href: "/", isRoute: true },
+  { name: "About", href: "/about", isRoute: true },
   { name: "Academy", href: "/academy", isRoute: true },
-  { name: "Media Coverage", href: "/media-coverage", isRoute: true },
   { name: "Global Initiative", href: "/global", isRoute: true },
-  { name: "Resources", href: "#resources" },
-  { name: "Events", href: "#events" },
-  { name: "About", href: "#about" },
+  { name: "Media", href: "/media-coverage", isRoute: true },
+  { name: "Careers", href: "/careers", isRoute: true },
   { name: "Contact", href: "#contact" },
 ];
 
