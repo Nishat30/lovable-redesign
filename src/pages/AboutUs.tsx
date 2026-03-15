@@ -98,6 +98,29 @@ export default function AboutUs() {
                 </motion.div>
               ))}
             </div>
+
+            {/* Certificate & Organization Photo */}
+            <div className="grid md:grid-cols-2 gap-6 mt-10">
+              <motion.div initial="hidden" whileInView="visible" custom={5} variants={fadeUp} viewport={{ once: true }}
+                className="bg-card rounded-2xl p-6 shadow-soft border border-border/50 flex flex-col items-center text-center">
+                <div className="w-full aspect-[4/3] bg-muted rounded-xl mb-4 flex items-center justify-center border border-dashed border-border overflow-hidden">
+                  {/* Replace src with your certificate image */}
+                  <img src="/placeholder.svg" alt="GFSRD Certificate" className="w-full h-full object-contain p-4" />
+                </div>
+                <h4 className="font-display text-base font-semibold text-foreground mb-1">Certificate</h4>
+                <p className="text-xs text-muted-foreground">Upload your certificate image to replace this placeholder</p>
+              </motion.div>
+
+              <motion.div initial="hidden" whileInView="visible" custom={6} variants={fadeUp} viewport={{ once: true }}
+                className="bg-card rounded-2xl p-6 shadow-soft border border-border/50 flex flex-col items-center text-center">
+                <div className="w-full aspect-[4/3] bg-muted rounded-xl mb-4 flex items-center justify-center border border-dashed border-border overflow-hidden">
+                  {/* Replace src with your organization photo */}
+                  <img src="/placeholder.svg" alt="GFSRD Organization" className="w-full h-full object-cover" />
+                </div>
+                <h4 className="font-display text-base font-semibold text-foreground mb-1">Our Organization</h4>
+                <p className="text-xs text-muted-foreground">Upload your organization photo to replace this placeholder</p>
+              </motion.div>
+            </div>
           </div>
         </section>
 
