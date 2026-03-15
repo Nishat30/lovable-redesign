@@ -5,112 +5,128 @@
       "title": "GFSRD – Global Centre for Sustainable Agriculture and Food Security",
       "shortTitle": "Sustainable Agriculture & Food Security",
       "content": "The Global Centre for Sustainable Agriculture and Food Security focuses on developing innovative farming practices, promoting food sovereignty, and ensuring long-term agricultural sustainability. Our programs address climate-resilient crops, soil health management, water conservation techniques, and integrated pest management systems that benefit rural communities worldwide.",
-      "icon": "Leaf"
+      "icon": "Leaf",
+      "logo": ""
     },
     {
       "id": "bamboo-ntfp",
       "title": "GFSRD-Global Centre for Bamboo and other NTFP Promotion",
       "shortTitle": "Bamboo & NTFP Promotion",
       "content": "This centre promotes the sustainable harvesting and commercialization of bamboo and Non-Timber Forest Products (NTFPs). We work with local communities to develop value chains, provide training on sustainable harvesting techniques, and connect producers with markets while preserving forest ecosystems.",
-      "icon": "TreePine"
+      "icon": "TreePine",
+      "logo": ""
     },
     {
       "id": "education-skills",
       "title": "GFSRD-Global Centre for Education and Skills Development",
       "shortTitle": "Education & Skills Development",
       "content": "Our Education and Skills Development centre works to enhance educational opportunities in rural areas. We focus on vocational training, digital literacy, entrepreneurship education, and lifelong learning programs that empower rural communities to thrive in the modern economy.",
-      "icon": "GraduationCap"
+      "icon": "GraduationCap",
+      "logo": ""
     },
     {
       "id": "environment-climate",
       "title": "GFSRD-Global Centre for Environment and Climate Change",
       "shortTitle": "Environment & Climate Change",
       "content": "The Environment and Climate Change centre addresses the critical challenges facing rural communities due to environmental degradation and climate change. Our initiatives include climate adaptation strategies, renewable energy promotion, carbon sequestration projects, and ecosystem restoration programs.",
-      "icon": "CloudSun"
+      "icon": "CloudSun",
+      "logo": ""
     },
     {
       "id": "gender-equality",
       "title": "GFSRD-Global Centre for Gender Equality",
       "shortTitle": "Gender Equality",
       "content": "This centre champions gender equality in rural development. We work to empower women through economic opportunities, leadership training, access to resources, and advocacy for gender-responsive policies that ensure equitable development outcomes.",
-      "icon": "Users"
+      "icon": "Users",
+      "logo": ""
     },
     {
       "id": "ict-infrastructure",
       "title": "GFSRD-Global Centre for ICT and Rural Infrastructure",
       "shortTitle": "ICT & Rural Infrastructure",
       "content": "Our ICT and Rural Infrastructure centre bridges the digital divide by promoting technology adoption in rural areas. We focus on connectivity solutions, digital services, smart agriculture technologies, and infrastructure development that transforms rural economies.",
-      "icon": "Wifi"
+      "icon": "Wifi",
+      "logo": ""
     },
     {
       "id": "inclusive-development",
       "title": "GFSRD-Global Centre for Inclusive Development",
       "shortTitle": "Inclusive Development",
       "content": "The Inclusive Development centre ensures that development benefits reach all segments of rural society, including marginalized groups. We promote participatory approaches, social protection programs, and policies that leave no one behind.",
-      "icon": "Heart"
+      "icon": "Heart",
+      "logo": ""
     },
     {
       "id": "indigenous-people",
       "title": "GFSRD-Global Centre for Indigenous People",
       "shortTitle": "Indigenous People",
       "content": "This centre works to protect and promote the rights of indigenous communities. We support the preservation of traditional knowledge, land rights, cultural heritage, and sustainable livelihoods that respect indigenous ways of life.",
-      "icon": "Mountain"
+      "icon": "Mountain",
+      "logo": ""
     },
     {
       "id": "glossary",
       "title": "Glossary",
       "shortTitle": "Glossary",
       "content": "A comprehensive glossary of terms related to sustainable rural development, agriculture, environmental conservation, and community development. This resource helps practitioners, researchers, and community members understand key concepts and terminology used in our work.",
-      "icon": "BookOpen"
+      "icon": "BookOpen",
+      "logo": ""
     },
     {
       "id": "local-government",
       "title": "GFSRD-Global Centre for Local Government",
       "shortTitle": "Local Government",
       "content": "The Local Government centre strengthens the capacity of local authorities to deliver services and promote sustainable development. We provide training, technical assistance, and knowledge sharing to improve governance at the grassroots level.",
-      "icon": "Building"
+      "icon": "Building",
+      "logo": ""
     },
     {
       "id": "public-health",
       "title": "GFSRD-Global Centre for Public Health Care and Management",
       "shortTitle": "Public Health Care & Management",
       "content": "Our Public Health centre addresses health challenges in rural communities. We work on improving healthcare access, disease prevention, nutrition programs, and health system strengthening to ensure healthier rural populations.",
-      "icon": "Stethoscope"
+      "icon": "Stethoscope",
+      "logo": ""
     },
     {
       "id": "rural-entrepreneurship",
       "title": "GFSRD-Global Centre for Rural Entrepreneurship and Livelihood",
       "shortTitle": "Rural Entrepreneurship & Livelihood",
       "content": "This centre promotes entrepreneurship and sustainable livelihoods in rural areas. We provide business development support, access to finance, market linkages, and mentorship to help rural entrepreneurs succeed.",
-      "icon": "Briefcase"
+      "icon": "Briefcase",
+      "logo": ""
     },
     {
       "id": "rural-urban-linkages",
       "title": "GFSRD-Global Centre for Rural-Urban Linkages Studies",
       "shortTitle": "Rural-Urban Linkages",
       "content": "The Rural-Urban Linkages centre studies and strengthens the connections between rural and urban areas. We focus on migration, remittances, supply chains, and policies that create mutually beneficial rural-urban relationships.",
-      "icon": "ArrowLeftRight"
+      "icon": "ArrowLeftRight",
+      "logo": ""
     },
     {
       "id": "science-technology",
       "title": "GFSRD-Global Centre for Science & Technology",
       "shortTitle": "Science & Technology",
       "content": "Our Science and Technology centre promotes innovation for rural development. We facilitate research, technology transfer, and adoption of appropriate technologies that address rural challenges and opportunities.",
-      "icon": "Microscope"
+      "icon": "Microscope",
+      "logo": ""
     },
     {
       "id": "social-enterprises",
       "title": "GFSRD-Global Centre for Social Enterprises and Civil Society",
       "shortTitle": "Social Enterprises & Civil Society",
       "content": "This centre supports the growth of social enterprises and civil society organizations in rural areas. We provide capacity building, networking opportunities, and advocacy support to strengthen the social sector.",
-      "icon": "HandHeart"
+      "icon": "HandHeart",
+      "logo": ""
     },
     {
       "id": "youth-development",
       "title": "GFSRD-Global Centre for Youth Development",
       "shortTitle": "Youth Development",
       "content": "The Youth Development centre engages young people in rural development. We offer skills training, leadership programs, employment support, and platforms for youth participation in decision-making processes.",
-      "icon": "Sparkles"
+      "icon": "Sparkles",
+      "logo": ""
     }
   ]
 }
