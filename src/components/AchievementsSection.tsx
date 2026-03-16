@@ -1,87 +1,88 @@
 import { motion } from "framer-motion";
-import { TrendingUp, Award, MapPin, Handshake } from "lucide-react";
+import { Award } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
-const achievements = [
+const awards = [
   {
-    icon: TrendingUp,
-    value: "150%",
-    label: "Yield Improvement",
-    description: "Average crop yield increase in partner communities",
+    title: "EFDIF Award 2021",
+    description: "Partner of the Year",
+    image: "/placeholder.svg",
   },
   {
-    icon: Award,
-    value: "25+",
-    label: "Awards Received",
-    description: "International recognition for sustainable practices",
+    title: "Global SDG Award 2022",
+    description: "Excellence in Rural Development",
+    image: "/placeholder.svg",
   },
   {
-    icon: MapPin,
-    value: "1,200+",
-    label: "Villages Reached",
-    description: "Direct community engagement across regions",
+    title: "UN Recognition 2023",
+    description: "Outstanding Contribution to Sustainability",
+    image: "/placeholder.svg",
   },
   {
-    icon: Handshake,
-    value: "80+",
-    label: "Partnerships",
-    description: "Collaborations with governments and NGOs",
+    title: "International Development Award 2024",
+    description: "Best Community Impact Initiative",
+    image: "/placeholder.svg",
   },
 ];
 
 export function AchievementsSection() {
   return (
-    <section className="py-24 lg:py-32 bg-gradient-hero text-primary-foreground relative overflow-hidden">
-      {/* Decorative Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-accent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
-      </div>
-
-      <div className="container relative mx-auto px-4 lg:px-8">
-        {/* Section Header */}
+    <section className="py-24 lg:py-32 bg-secondary/20">
+      <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="flex items-center gap-3 mb-12"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary-foreground/10 text-primary-foreground text-sm font-medium mb-4">
-            Our Impact
-          </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Making a Difference
+          <Award className="w-8 h-8 text-primary" />
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground uppercase">
+            Our Achievements
           </h2>
-          <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto">
-            Our work has transformed lives and communities, creating lasting impact
-            through sustainable development initiatives.
-          </p>
         </motion.div>
 
-        {/* Achievement Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {achievements.map((achievement, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="text-center group"
-            >
-              <div className="w-16 h-16 rounded-2xl bg-primary-foreground/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                <achievement.icon className="w-8 h-8 text-accent" />
-              </div>
-              <div className="font-display text-4xl md:text-5xl font-bold mb-2">
-                {achievement.value}
-              </div>
-              <div className="text-lg font-semibold mb-2">{achievement.label}</div>
-              <p className="text-primary-foreground/70 text-sm">
-                {achievement.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-md mx-auto"
+        >
+          <Carousel opts={{ loop: true }} className="w-full">
+            <CarouselContent>
+              {awards.map((award, index) => (
+                <CarouselItem key={index}>
+                  <div className="flex flex-col items-center text-center p-4">
+                    <div className="w-[320px] h-[400px] rounded-xl overflow-hidden mb-6 bg-muted flex items-center justify-center">
+                      <img
+                        src={award.image}
+                        alt={award.title}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <h3 className="font-display text-lg font-semibold text-foreground mb-1">
+                      {award.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm">
+                      {award.description}
+                    </p>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center gap-2 mt-4">
+              <CarouselPrevious className="static translate-y-0" />
+              <CarouselNext className="static translate-y-0" />
+            </div>
+          </Carousel>
+        </motion.div>
       </div>
     </section>
   );
