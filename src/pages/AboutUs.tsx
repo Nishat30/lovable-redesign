@@ -37,8 +37,8 @@ const milestones = [
 ];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } }),
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.4, delay: i * 0.06 } }),
 };
 
 export default function AboutUs() {
@@ -47,41 +47,40 @@ export default function AboutUs() {
       <Header />
       <main>
         {/* Hero */}
-        <div className="bg-gradient-hero text-primary-foreground pt-32 pb-20">
+        <div className="bg-gradient-hero text-primary-foreground pt-28 pb-14">
           <div className="container mx-auto px-4 text-center">
             <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-              <span className="inline-flex items-center gap-2 bg-primary-foreground/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-6">
+              <span className="inline-flex items-center gap-2 bg-primary-foreground/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-4">
                 <Building className="w-4 h-4" />
                 <span className="text-sm font-medium">About GFSRD</span>
               </span>
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-3">
                 Our Story & Mission
               </h1>
-              <p className="text-primary-foreground/80 max-w-2xl mx-auto text-lg">
+              <p className="text-primary-foreground/80 max-w-2xl mx-auto">
                 Building a world where rural communities thrive through sustainable development, innovation, and global collaboration.
               </p>
             </motion.div>
           </div>
         </div>
 
-        {/* Who We Are */}
-        <section className="py-20 lg:py-28">
-          <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
+        {/* Who We Are + Credentials */}
+        <section className="py-14">
+          <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
             <motion.div initial="hidden" whileInView="visible" custom={0} variants={fadeUp} viewport={{ once: true }}
-              className="bg-card rounded-2xl p-8 md:p-10 shadow-card border border-border/50 mb-10">
-              <div className="flex items-center gap-4 mb-5">
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Building className="h-7 w-7 text-primary" />
+              className="bg-card rounded-2xl p-6 md:p-8 shadow-card border border-border/50 mb-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Building className="h-6 w-6 text-primary" />
                 </div>
-                <h2 className="font-display text-2xl font-semibold text-foreground">Who We Are</h2>
+                <h2 className="font-display text-xl md:text-2xl font-semibold text-foreground">Who We Are</h2>
               </div>
-              <p className="text-foreground/75 leading-relaxed text-lg">
+              <p className="text-foreground/75 leading-relaxed">
                 GFSRD is registered as a Not-For-Profit Company under Section 8/15 under the Ministry of Corporate Affairs, Government of India. GFSRD is also ISO 9001:2015 certified Not-For-Profit Company with a mission to create a platform to bring and link Rural Development Research, Policies and Practices in one umbrella and advocate for Sustainable Rural Development globally.
               </p>
             </motion.div>
 
-            {/* Credentials */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
               {[
                 { icon: Award, label: "ISO 9001:2015", desc: "Quality Certified" },
                 { icon: FileText, label: "Section 8/15", desc: "Registered NPO" },
@@ -89,88 +88,75 @@ export default function AboutUs() {
                 { icon: Users, label: "2M+ Farmers", desc: "Lives Impacted" },
               ].map((item, i) => (
                 <motion.div key={item.label} initial="hidden" whileInView="visible" custom={i + 1} variants={fadeUp} viewport={{ once: true }}
-                  className="bg-card rounded-xl p-5 shadow-soft border border-border/50 text-center">
-                  <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3">
-                    <item.icon className="h-5 w-5 text-primary" />
+                  className="bg-card rounded-xl p-4 shadow-soft border border-border/50 text-center">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-2">
+                    <item.icon className="h-4 w-4 text-primary" />
                   </div>
-                  <span className="font-medium text-sm text-foreground block mb-1">{item.label}</span>
+                  <span className="font-medium text-sm text-foreground block">{item.label}</span>
                   <span className="text-xs text-muted-foreground">{item.desc}</span>
                 </motion.div>
               ))}
             </div>
+          </div>
+        </section>
 
-            {/* Certificate & Organization Photo */}
-            <div className="grid md:grid-cols-2 gap-6 mt-10">
-              <motion.div initial="hidden" whileInView="visible" custom={5} variants={fadeUp} viewport={{ once: true }}
-                className="bg-card rounded-2xl p-6 shadow-soft border border-border/50 flex flex-col items-center text-center">
-                <div className="w-full aspect-[4/3] bg-muted rounded-xl mb-4 flex items-center justify-center border border-dashed border-border overflow-hidden">
-                  {/* Replace src with your certificate image */}
-                  <img src="/placeholder.svg" alt="GFSRD Certificate" className="w-full h-full object-contain p-4" />
+        {/* Genesis + Organization Photo */}
+        <section className="py-14 bg-secondary/20">
+          <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
+            <motion.div initial="hidden" whileInView="visible" custom={0} variants={fadeUp} viewport={{ once: true }} className="text-center mb-8">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-3">Our Origin</span>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">Genesis</h2>
+            </motion.div>
+            <div className="grid md:grid-cols-5 gap-6 items-start">
+              <motion.div initial="hidden" whileInView="visible" custom={1} variants={fadeUp} viewport={{ once: true }}
+                className="md:col-span-3 bg-card rounded-2xl p-6 md:p-8 shadow-card border border-border/50">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+                    <Lightbulb className="h-5 w-5 text-accent" />
+                  </div>
+                  <h3 className="font-display text-lg font-semibold text-foreground">Why GFSRD Was Founded</h3>
                 </div>
-                <h4 className="font-display text-base font-semibold text-foreground mb-1">Certificate</h4>
-                <p className="text-xs text-muted-foreground">Upload your certificate image to replace this placeholder</p>
+                <p className="text-foreground/75 leading-relaxed text-sm md:text-base">
+                  Rural Development encompasses issues relating to all segments of the rural population and rural areas — presenting to policy makers and development practitioners with both problems as well as opportunities. It involves many dimensions and challenges, requiring an inter-disciplinary approach, which may not be possible to be addressed by individuals acting alone or by single institutions and organisations.
+                </p>
+                <p className="text-foreground/75 leading-relaxed text-sm md:text-base mt-3">
+                  Despite the abundance of best practice examples and the wealth of initiatives, success stories, innovations, and research related to rural issues, there are few common platforms to present these and advocate towards policy reform for sustainable rural development.
+                </p>
               </motion.div>
-
-              <motion.div initial="hidden" whileInView="visible" custom={6} variants={fadeUp} viewport={{ once: true }}
-                className="bg-card rounded-2xl p-6 shadow-soft border border-border/50 flex flex-col items-center text-center">
-                <div className="w-full aspect-[4/3] bg-muted rounded-xl mb-4 flex items-center justify-center border border-dashed border-border overflow-hidden">
-                  {/* Replace src with your organization photo */}
+              <motion.div initial="hidden" whileInView="visible" custom={2} variants={fadeUp} viewport={{ once: true }}
+                className="md:col-span-2 bg-card rounded-2xl p-4 shadow-soft border border-border/50">
+                <div className="w-full aspect-[3/4] bg-muted rounded-xl flex items-center justify-center border border-dashed border-border overflow-hidden">
+                  {/* Replace with organization photo */}
                   <img src="/placeholder.svg" alt="GFSRD Organization" className="w-full h-full object-cover" />
                 </div>
-                <h4 className="font-display text-base font-semibold text-foreground mb-1">Our Organization</h4>
-                <p className="text-xs text-muted-foreground">Upload your organization photo to replace this placeholder</p>
+                <p className="text-xs text-muted-foreground text-center mt-2">Our Organization</p>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Genesis */}
-        <section className="py-20 bg-secondary/20">
-          <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-            <motion.div initial="hidden" whileInView="visible" custom={0} variants={fadeUp} viewport={{ once: true }} className="text-center mb-10">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">Our Origin</span>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">Genesis</h2>
-            </motion.div>
-            <motion.div initial="hidden" whileInView="visible" custom={1} variants={fadeUp} viewport={{ once: true }}
-              className="bg-card rounded-2xl p-8 md:p-10 shadow-card border border-border/50">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-                  <Lightbulb className="h-6 w-6 text-accent" />
-                </div>
-                <h3 className="font-display text-xl font-semibold text-foreground">Why GFSRD Was Founded</h3>
-              </div>
-              <p className="text-foreground/75 leading-relaxed text-base md:text-lg">
-                Rural Development encompasses issues relating to all segments of the rural population and rural areas — presenting to policy makers and development practitioners with both problems as well as opportunities. It involves many dimensions and challenges, requiring an inter-disciplinary approach, which may not be possible to be addressed by individuals acting alone or by single institutions and organisations and by viewing issues solely from any particular level, region, or country.
-              </p>
-              <p className="text-foreground/75 leading-relaxed text-base md:text-lg mt-4">
-                Further, despite the abundance of best practice examples, and the wealth of initiatives, success stories, innovations, projects, programmes, organisational structures, institutions, opinions, and research related to rural issues that exist, there are few common platforms to present these and advocate towards policy reform for sustainable rural development.
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
         {/* Mission & Vision */}
-        <section className="py-20 lg:py-28">
-          <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-            <div className="grid md:grid-cols-2 gap-6 mb-12">
+        <section className="py-14">
+          <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
+            <div className="grid md:grid-cols-2 gap-5">
               <motion.div initial="hidden" whileInView="visible" custom={0} variants={fadeUp} viewport={{ once: true }}
-                className="group bg-card rounded-2xl p-8 shadow-card border border-border/50 hover:shadow-elevated transition-all">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-                  <Target className="h-6 w-6 text-primary" />
+                className="bg-card rounded-2xl p-6 shadow-card border border-border/50">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                  <Target className="h-5 w-5 text-primary" />
                 </div>
-                <h3 className="font-display text-xl font-semibold text-foreground mb-3">Our Mission</h3>
-                <p className="text-foreground/75 leading-relaxed">
+                <h3 className="font-display text-lg font-semibold text-foreground mb-2">Our Mission</h3>
+                <p className="text-foreground/75 leading-relaxed text-sm">
                   To create a platform to bring and link Rural Development Researches, Policies and Practices in one umbrella and advocate for Sustainable Rural Development globally.
                 </p>
               </motion.div>
 
               <motion.div initial="hidden" whileInView="visible" custom={1} variants={fadeUp} viewport={{ once: true }}
-                className="group bg-card rounded-2xl p-8 shadow-card border border-border/50 hover:shadow-elevated transition-all">
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
-                  <Eye className="h-6 w-6 text-accent" />
+                className="bg-card rounded-2xl p-6 shadow-card border border-border/50">
+                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
+                  <Eye className="h-5 w-5 text-accent" />
                 </div>
-                <h3 className="font-display text-xl font-semibold text-foreground mb-3">Our Vision</h3>
-                <p className="text-foreground/75 leading-relaxed">
+                <h3 className="font-display text-lg font-semibold text-foreground mb-2">Our Vision</h3>
+                <p className="text-foreground/75 leading-relaxed text-sm">
                   Work as a rural development policy think tank that develops and promotes alternative solutions to issues concerned with sustainable rural development.
                 </p>
               </motion.div>
@@ -178,42 +164,52 @@ export default function AboutUs() {
           </div>
         </section>
 
-        {/* Goals */}
-        <section className="py-20 bg-secondary/20">
+        {/* Goals + Certificate */}
+        <section className="py-14 bg-secondary/20">
           <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
-            <motion.div initial="hidden" whileInView="visible" custom={0} variants={fadeUp} viewport={{ once: true }} className="text-center mb-14">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">What We Do</span>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">Our Goals</h2>
+            <motion.div initial="hidden" whileInView="visible" custom={0} variants={fadeUp} viewport={{ once: true }} className="text-center mb-8">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-3">What We Do</span>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">Our Goals</h2>
             </motion.div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {goals.map((goal, i) => (
-                <motion.div key={i} initial="hidden" whileInView="visible" custom={i + 1} variants={fadeUp} viewport={{ once: true }}
-                  className="bg-card rounded-2xl p-6 shadow-soft border border-border/50 hover:shadow-card transition-all">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                    <goal.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <p className="text-foreground/75 leading-relaxed text-sm">{goal.text}</p>
-                </motion.div>
-              ))}
+            <div className="grid md:grid-cols-5 gap-6">
+              <div className="md:col-span-3 grid sm:grid-cols-2 gap-4">
+                {goals.map((goal, i) => (
+                  <motion.div key={i} initial="hidden" whileInView="visible" custom={i + 1} variants={fadeUp} viewport={{ once: true }}
+                    className="bg-card rounded-xl p-5 shadow-soft border border-border/50">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                      <goal.icon className="h-5 w-5 text-primary" />
+                    </div>
+                    <p className="text-foreground/75 leading-relaxed text-xs">{goal.text}</p>
+                  </motion.div>
+                ))}
+              </div>
+              <motion.div initial="hidden" whileInView="visible" custom={3} variants={fadeUp} viewport={{ once: true }}
+                className="md:col-span-2 bg-card rounded-2xl p-4 shadow-soft border border-border/50 self-start">
+                <div className="w-full aspect-[3/4] bg-muted rounded-xl flex items-center justify-center border border-dashed border-border overflow-hidden">
+                  {/* Replace with certificate image */}
+                  <img src="/placeholder.svg" alt="GFSRD Certificate" className="w-full h-full object-contain p-4" />
+                </div>
+                <p className="text-xs text-muted-foreground text-center mt-2">Certificate</p>
+              </motion.div>
             </div>
           </div>
         </section>
 
         {/* Objectives */}
-        <section className="py-20 lg:py-28">
+        <section className="py-14">
           <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-            <motion.div initial="hidden" whileInView="visible" custom={0} variants={fadeUp} viewport={{ once: true }} className="text-center mb-14">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">Our Focus</span>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">Objectives</h2>
+            <motion.div initial="hidden" whileInView="visible" custom={0} variants={fadeUp} viewport={{ once: true }} className="text-center mb-8">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-3">Our Focus</span>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">Objectives</h2>
             </motion.div>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {objectives.map((obj, i) => (
                 <motion.div key={i} initial="hidden" whileInView="visible" custom={i + 1} variants={fadeUp} viewport={{ once: true }}
-                  className="flex items-start gap-4 bg-card rounded-xl p-6 shadow-soft border border-border/50">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-primary font-bold text-sm">{i + 1}</span>
+                  className="flex items-start gap-3 bg-card rounded-xl p-5 shadow-soft border border-border/50">
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="text-primary font-bold text-xs">{i + 1}</span>
                   </div>
-                  <p className="text-foreground/75 leading-relaxed">{obj}</p>
+                  <p className="text-foreground/75 leading-relaxed text-sm">{obj}</p>
                 </motion.div>
               ))}
             </div>
@@ -221,21 +217,21 @@ export default function AboutUs() {
         </section>
 
         {/* Values */}
-        <section className="py-20 bg-secondary/20">
+        <section className="py-14 bg-secondary/20">
           <div className="container mx-auto px-4 lg:px-8">
-            <motion.div initial="hidden" whileInView="visible" custom={0} variants={fadeUp} viewport={{ once: true }} className="text-center mb-14">
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">Our Core Values</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">The principles that guide everything we do.</p>
+            <motion.div initial="hidden" whileInView="visible" custom={0} variants={fadeUp} viewport={{ once: true }} className="text-center mb-10">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">Our Core Values</h2>
+              <p className="text-muted-foreground max-w-xl mx-auto text-sm">The principles that guide everything we do.</p>
             </motion.div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
               {values.map((value, i) => (
                 <motion.div key={value.title} initial="hidden" whileInView="visible" custom={i + 1} variants={fadeUp} viewport={{ once: true }}
-                  className="bg-card rounded-2xl p-6 text-center shadow-soft border border-border/50 hover:shadow-card transition-all">
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <value.icon className="w-7 h-7 text-primary" />
+                  className="bg-card rounded-xl p-5 text-center shadow-soft border border-border/50">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                    <value.icon className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-display text-lg font-semibold text-foreground mb-2">{value.title}</h3>
-                  <p className="text-muted-foreground text-sm">{value.description}</p>
+                  <h3 className="font-display text-base font-semibold text-foreground mb-1">{value.title}</h3>
+                  <p className="text-muted-foreground text-xs">{value.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -243,23 +239,23 @@ export default function AboutUs() {
         </section>
 
         {/* Timeline */}
-        <section className="py-20 lg:py-28">
+        <section className="py-14">
           <div className="container mx-auto px-4 lg:px-8">
-            <motion.div initial="hidden" whileInView="visible" custom={0} variants={fadeUp} viewport={{ once: true }} className="text-center mb-14">
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">Our Journey</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">Key milestones in our mission for sustainable development.</p>
+            <motion.div initial="hidden" whileInView="visible" custom={0} variants={fadeUp} viewport={{ once: true }} className="text-center mb-10">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">Our Journey</h2>
+              <p className="text-muted-foreground max-w-xl mx-auto text-sm">Key milestones in our mission for sustainable development.</p>
             </motion.div>
             <div className="max-w-3xl mx-auto relative">
               <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-border md:-translate-x-px" />
               {milestones.map((milestone, i) => (
                 <motion.div key={milestone.year} initial="hidden" whileInView="visible" custom={i} variants={fadeUp} viewport={{ once: true }}
-                  className={`relative flex items-start gap-6 mb-10 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
+                  className={`relative flex items-start gap-5 mb-8 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
                   <div className="hidden md:block md:w-1/2" />
-                  <div className="absolute left-6 md:left-1/2 w-4 h-4 rounded-full bg-primary border-4 border-background -translate-x-1/2 mt-1.5 z-10" />
-                  <div className="ml-14 md:ml-0 md:w-1/2 bg-card rounded-xl p-5 shadow-soft border border-border/50">
-                    <span className="inline-block text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded mb-2">{milestone.year}</span>
-                    <h3 className="font-display text-base font-semibold text-foreground mb-1">{milestone.title}</h3>
-                    <p className="text-muted-foreground text-sm">{milestone.description}</p>
+                  <div className="absolute left-6 md:left-1/2 w-3.5 h-3.5 rounded-full bg-primary border-4 border-background -translate-x-1/2 mt-1.5 z-10" />
+                  <div className="ml-14 md:ml-0 md:w-1/2 bg-card rounded-xl p-4 shadow-soft border border-border/50">
+                    <span className="text-primary font-bold text-sm">{milestone.year}</span>
+                    <h4 className="font-display text-base font-semibold text-foreground mt-1">{milestone.title}</h4>
+                    <p className="text-muted-foreground text-xs mt-1">{milestone.description}</p>
                   </div>
                 </motion.div>
               ))}
