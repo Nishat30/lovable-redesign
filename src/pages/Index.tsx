@@ -23,8 +23,18 @@ const Index = () => {
         <AboutSection />
         <ProgramsSection />
         <AcademyScrollbar />
-        <AchievementsSection />
-        <VideoSection />
+        <section className="py-16 lg:py-24 bg-gradient-hero text-primary-foreground relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
+          </div>
+          <div className="container relative mx-auto px-4 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-10">
+              <VideoSection />
+              <AchievementsSection />
+            </div>
+          </div>
+        </section>
         <ActivitySection />
         <WorldMapSection />
         <TeamSection />
