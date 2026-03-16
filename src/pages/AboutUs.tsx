@@ -125,7 +125,7 @@ export default function AboutUs() {
               </motion.div>
               <motion.div initial="hidden" whileInView="visible" custom={2} variants={fadeUp} viewport={{ once: true }}
                 className="md:col-span-2 bg-card rounded-2xl p-4 shadow-soft border border-border/50">
-                <div className="w-full aspect-[3/4] bg-muted rounded-xl flex items-center justify-center border border-dashed border-border overflow-hidden">
+                <div className="w-[520px] h-[320px] max-w-full bg-muted rounded-xl flex items-center justify-center border border-dashed border-border overflow-hidden">
                   {/* Replace with organization photo */}
                   <img src="/placeholder.svg" alt="GFSRD Organization" className="w-full h-full object-cover" />
                 </div>
