@@ -10,6 +10,7 @@ import GlobalInitiative from "./pages/GlobalInitiative";
 import GlobalProfile from "./pages/GlobalProfile";
 import AboutUs from "./pages/AboutUs";
 import Careers from "./pages/Careers";
+import People from "./pages/People";
 import CountryPage from "./pages/CountryPage";
 import NotFound from "./pages/NotFound";
 
