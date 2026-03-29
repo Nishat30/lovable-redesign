@@ -10,6 +10,7 @@ import GlobalInitiative from "./pages/GlobalInitiative";
 import GlobalProfile from "./pages/GlobalProfile";
 import AboutUs from "./pages/AboutUs";
 import Careers from "./pages/Careers";
+import People from "./pages/People";
 import CountryPage from "./pages/CountryPage";
 import NotFound from "./pages/NotFound";
 
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/global/profile/:id" element={<GlobalProfile />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/people" element={<People />} />
           <Route path="/country/:countrySlug" element={<CountryPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
