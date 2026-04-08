@@ -62,6 +62,19 @@ export default function TeamProfile() {
               )}
             </div>
 
+            {/* Secondary Image */}
+            <div className="w-[160px] h-[180px] flex-shrink-0 rounded-xl bg-secondary/50 border border-border flex items-center justify-center overflow-hidden">
+              {(member as any).secondaryImage ? (
+                <img
+                  src={(member as any).secondaryImage}
+                  alt={`${member.name} secondary`}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <p className="text-muted-foreground text-xs text-center px-2">Add picture here</p>
+              )}
+            </div>
+
             {/* Contact Info */}
             <div className="flex-1 space-y-3">
               <h1 className="font-display text-2xl md:text-3xl font-bold text-foreground">
@@ -116,9 +129,17 @@ export default function TeamProfile() {
                 `${member.name} serves as ${member.role} for ${member.country}. Profile details coming soon — please check back later.`}
             </p>
 
-            {/* Placeholder for picture */}
-            <div className="w-full max-w-md h-[280px] rounded-xl bg-secondary/50 border border-border flex items-center justify-center">
-              <p className="text-muted-foreground text-sm">Add picture here</p>
+            {/* About picture */}
+            <div className="w-full max-w-md h-[280px] rounded-xl bg-secondary/50 border border-border flex items-center justify-center overflow-hidden">
+              {(member as any).secondaryImage ? (
+                <img
+                  src={(member as any).secondaryImage}
+                  alt={`${member.name} about`}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <p className="text-muted-foreground text-sm">Add picture here</p>
+              )}
             </div>
           </motion.div>
         </div>
