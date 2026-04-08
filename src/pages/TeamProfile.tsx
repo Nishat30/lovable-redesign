@@ -31,64 +31,70 @@ export default function TeamProfile() {
       <Header />
 
       {/* Hero Banner */}
-      <section className="relative h-[100px] bg-gradient-hero" />
+      <section className="relative h-[140px] bg-gradient-hero" />
 
-      <main className="pb-16">
-        <div className="container mx-auto px-4 max-w-4xl">
+      <main className="py-10">
+        <div className="container mx-auto px-4 max-w-4xl space-y-6">
+          {/* Back link */}
+          <Link
+            to="/people"
+            className="inline-flex items-center gap-2 text-primary hover:underline font-medium text-sm"
+          >
+            <ArrowLeft className="w-4 h-4" /> Back to People
+          </Link>
+
           {/* Profile Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-card rounded-2xl shadow-card border border-border overflow-hidden -mt-12 relative z-10"
+            className="bg-card rounded-2xl shadow-card border border-border p-6 md:p-10 flex flex-col md:flex-row gap-6 items-start"
           >
-            <div className="p-6 md:p-10 flex flex-col md:flex-row gap-6 items-start">
-              {/* Photo */}
-              <div className="w-[160px] h-[160px] flex-shrink-0 rounded-xl bg-secondary border-2 border-border flex items-center justify-center overflow-hidden">
-                {member.image ? (
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <User className="w-16 h-16 text-muted-foreground" />
-                )}
-              </div>
+            {/* Photo */}
+            <div className="w-[160px] h-[180px] flex-shrink-0 rounded-xl bg-secondary/50 border border-border flex items-center justify-center overflow-hidden">
+              {member.image ? (
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <User className="w-16 h-16 text-muted-foreground" />
+              )}
+            </div>
 
-              {/* Contact Info */}
-              <div className="flex-1 space-y-3 pt-2">
-                <h1 className="font-display text-2xl md:text-3xl font-bold text-foreground">
-                  {member.name}
-                </h1>
-                {member.email && (
-                  <a
-                    href={`mailto:${member.email}`}
-                    className="flex items-center gap-3 text-primary hover:underline"
-                  >
-                    <Mail className="w-5 h-5" />
-                    {member.email}
-                  </a>
-                )}
-                {member.phone && (
-                  <a
-                    href={`tel:${member.phone}`}
-                    className="flex items-center gap-3 text-primary hover:underline"
-                  >
-                    <Phone className="w-5 h-5" />
-                    {member.phone}
-                  </a>
-                )}
-                {member.linkedin && (
-                  <a
-                    href={member.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors mt-1"
-                  >
-                    <Linkedin className="w-5 h-5" />
-                  </a>
-                )}
-              </div>
+            {/* Contact Info */}
+            <div className="flex-1 space-y-3">
+              <h1 className="font-display text-2xl md:text-3xl font-bold text-foreground">
+                {member.name}
+              </h1>
+              {member.email && (
+                <a
+                  href={`mailto:${member.email}`}
+                  className="flex items-center gap-3 text-primary hover:underline"
+                >
+                  <Mail className="w-5 h-5" />
+                  {member.email}
+                </a>
+              )}
+              {member.phone && (
+                <a
+                  href={`tel:${member.phone}`}
+                  className="flex items-center gap-3 text-primary hover:underline"
+                >
+                  <Phone className="w-5 h-5" />
+                  {member.phone}
+                </a>
+              )}
+              {member.linkedin && (
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors mt-1"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+              )}
             </div>
           </motion.div>
 
@@ -97,7 +103,7 @@ export default function TeamProfile() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
-            className="bg-card rounded-2xl shadow-card border border-border mt-6 p-6 md:p-10"
+            className="bg-card rounded-2xl shadow-card border border-border p-6 md:p-10"
           >
             <p className="text-muted-foreground font-medium mb-4">
               {member.role}, {member.country}
@@ -105,20 +111,16 @@ export default function TeamProfile() {
             <h2 className="font-display text-2xl font-bold text-foreground mb-4">
               About
             </h2>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed mb-8">
               {(member as any).bio ||
                 `${member.name} serves as ${member.role} for ${member.country}. Profile details coming soon — please check back later.`}
             </p>
-          </motion.div>
 
-          <div className="mt-8">
-            <Link
-              to="/people"
-              className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
-            >
-              <ArrowLeft className="w-4 h-4" /> Back to People
-            </Link>
-          </div>
+            {/* Placeholder for picture */}
+            <div className="w-full max-w-md h-[280px] rounded-xl bg-secondary/50 border border-border flex items-center justify-center">
+              <p className="text-muted-foreground text-sm">Add picture here</p>
+            </div>
+          </motion.div>
         </div>
       </main>
 
