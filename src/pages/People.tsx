@@ -69,6 +69,17 @@ export default function People() {
                 )}
               </div>
 
+              {/* Secondary Image */}
+              {member.secondaryImage && (
+                <div className="w-[100px] h-[100px] flex-shrink-0 rounded-lg bg-secondary overflow-hidden hidden md:block">
+                  <img
+                    src={member.secondaryImage}
+                    alt={`${member.name} secondary`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+
               {/* Info */}
               <div className="flex-1 min-w-0">
                 <Link to={`/people/${member.id}`} className="font-display text-lg font-bold text-primary hover:underline">
