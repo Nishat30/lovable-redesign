@@ -14,6 +14,7 @@ import People from "./pages/People";
 import TeamProfile from "./pages/TeamProfile";
 import CountryPage from "./pages/CountryPage";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/academy" element={<Academy />} />
