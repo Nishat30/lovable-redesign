@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
-import { Globe, MapPin } from "lucide-react";
+import { Globe, BookOpen } from "lucide-react";
 import { useState, useMemo } from "react";
 import {
   ComposableMap,
   Geographies,
   Geography,
   Marker,
-  ZoomableGroup,
 } from "react-simple-maps";
 import indiaMapData from "@svg-country-maps/india";
 import officeData from "@/data/officeLocations.json";
+import journalCover from "@/assets/journal-cover.png";
 
 const WORLD_GEO_URL = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
 
@@ -56,7 +56,8 @@ function GlobalMap() {
             key={office.id}
             coordinates={office.coordinates as [number, number]}
             onMouseEnter={(evt) => {
-              const rect = (evt.target as SVGElement).closest("svg")?.getBoundingClientRect();
+              const svg = (evt.target as SVGElement).closest("svg");
+              const rect = svg?.getBoundingClientRect();
               if (rect) {
                 setTooltip({
                   name: office.name,
@@ -77,10 +78,7 @@ function GlobalMap() {
       {tooltip && (
         <div
           className="absolute z-50 w-60 shadow-elevated rounded-md overflow-hidden pointer-events-none"
-          style={{
-            left: Math.min(tooltip.x + 12, 600),
-            top: tooltip.y - 10,
-          }}
+          style={{ left: Math.min(tooltip.x + 12, 500), top: tooltip.y - 10 }}
         >
           <div className="bg-foreground text-primary-foreground px-3 py-2 text-sm font-semibold">
             {tooltip.name}
@@ -113,13 +111,8 @@ function IndiaMap() {
 
   return (
     <div className="relative w-full flex flex-col lg:flex-row gap-6">
-      {/* Map */}
       <div className="flex-1 flex justify-center">
-        <svg
-          viewBox={viewBox}
-          className="w-full max-w-md h-auto"
-          style={{ maxHeight: "500px" }}
-        >
+        <svg viewBox={viewBox} className="w-full max-w-md h-auto" style={{ maxHeight: "500px" }}>
           {indiaStates.map((state: any) => {
             const isActive = stateOfficeMap[state.id];
             const isHovered = hoveredState === state.id;
@@ -145,7 +138,6 @@ function IndiaMap() {
         </svg>
       </div>
 
-      {/* State List */}
       <div className="lg:w-56 max-h-[500px] overflow-y-auto border border-border rounded-xl bg-card p-3">
         <h3 className="text-sm font-semibold text-foreground mb-3">States & Territories</h3>
         <ul className="space-y-1">
@@ -166,7 +158,6 @@ function IndiaMap() {
         </ul>
       </div>
 
-      {/* Hover tooltip for India */}
       {hoveredState && stateOfficeMap[hoveredState] && (
         <div className="absolute top-4 left-4 z-50 w-56 shadow-elevated rounded-md overflow-hidden pointer-events-none">
           <div className="bg-foreground text-primary-foreground px-3 py-2 text-sm font-semibold">
@@ -183,59 +174,94 @@ function IndiaMap() {
   );
 }
 
+function JournalCard() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.2 }}
+      className="bg-card rounded-2xl border border-border/50 shadow-card overflow-hidden flex flex-col"
+    >
+      <div className="flex items-center gap-2 px-5 pt-5 pb-3">
+        <BookOpen className="w-5 h-5 text-primary" />
+        <h3 className="font-display text-lg font-bold text-foreground uppercase tracking-wide">
+          New Journal
+        </h3>
+      </div>
+      <div className="px-5 pb-5 flex-1 flex items-center justify-center">
+        <img
+          src={journalCover}
+          alt="International Journal of Sustainable Rural Development - Volume 1 Issue 1 (2022)"
+          className="w-full max-w-[280px] rounded-lg shadow-soft object-contain"
+        />
+      </div>
+    </motion.div>
+  );
+}
+
 export function WorldMapSection() {
   const [view, setView] = useState<"global" | "india">("global");
 
   return (
     <section className="py-24 lg:py-32 bg-secondary/20 overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center justify-between mb-12 flex-wrap gap-4"
-        >
-          <div className="flex items-center gap-3">
-            <Globe className="w-6 h-6 text-primary" />
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground uppercase tracking-wide">
-              Our Offices
-            </h2>
+        {/* Layout: Map + Journal side by side */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 max-w-6xl mx-auto">
+          {/* Map Column */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center justify-between mb-6 flex-wrap gap-4"
+            >
+              <div className="flex items-center gap-3">
+                <Globe className="w-6 h-6 text-primary" />
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground uppercase tracking-wide">
+                  Our Offices
+                </h2>
+              </div>
+
+              <div className="flex bg-muted rounded-lg p-1 gap-1">
+                <button
+                  onClick={() => setView("global")}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                    view === "global"
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  Global
+                </button>
+                <button
+                  onClick={() => setView("india")}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                    view === "india"
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  India
+                </button>
+              </div>
+            </motion.div>
+
+            <motion.div
+              key={view}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
+              className="bg-card rounded-2xl border border-border/50 shadow-card p-6"
+            >
+              {view === "global" ? <GlobalMap /> : <IndiaMap />}
+            </motion.div>
           </div>
 
-          <div className="flex bg-muted rounded-lg p-1 gap-1">
-            <button
-              onClick={() => setView("global")}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                view === "global"
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Global
-            </button>
-            <button
-              onClick={() => setView("india")}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                view === "india"
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              India
-            </button>
-          </div>
-        </motion.div>
-
-        <motion.div
-          key={view}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
-          className="max-w-5xl mx-auto bg-card rounded-2xl border border-border/50 shadow-card p-6"
-        >
-          {view === "global" ? <GlobalMap /> : <IndiaMap />}
-        </motion.div>
+          {/* Journal Column */}
+          <JournalCard />
+        </div>
       </div>
     </section>
   );
