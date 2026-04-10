@@ -113,9 +113,9 @@ function IndiaMap() {
   const directors = stateDirectors as Record<string, { director: string; designation: string }>;
 
   return (
-    <div className="relative w-full flex flex-col lg:flex-row gap-6" style={{ minHeight: "420px" }}>
-      <div className="flex-1 flex justify-center items-center">
-        <svg viewBox={viewBox} className="w-full max-w-sm h-auto" style={{ maxHeight: "400px" }}>
+    <div className="relative w-full flex flex-col lg:flex-row gap-6" style={{ height: "380px" }}>
+      <div className="flex-1 flex justify-center items-center overflow-hidden">
+        <svg viewBox={viewBox} className="w-full max-w-xs h-auto" style={{ maxHeight: "340px" }}>
           {indiaStates.map((state: any) => {
             const isActive = stateOfficeMap[state.id];
             const isHovered = hoveredState === state.id;
