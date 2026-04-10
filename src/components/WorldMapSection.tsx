@@ -193,7 +193,7 @@ function JournalCard() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="bg-card rounded-2xl border border-border/50 shadow-card overflow-hidden flex flex-col"
+      className="bg-card rounded-2xl border border-border/50 shadow-card overflow-hidden flex flex-col self-start"
     >
       <div className="flex items-center gap-2 px-5 pt-5 pb-3">
         <BookOpen className="w-5 h-5 text-primary" />
