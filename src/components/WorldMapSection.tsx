@@ -9,6 +9,7 @@ import {
 } from "react-simple-maps";
 import indiaMapData from "@svg-country-maps/india";
 import officeData from "@/data/officeLocations.json";
+import stateDirectors from "@/data/stateDirectors.json";
 import journalCover from "@/assets/journal-cover.png";
 
 const WORLD_GEO_URL = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
@@ -29,8 +30,8 @@ function GlobalMap() {
         projection="geoMercator"
         projectionConfig={{ scale: 120, center: [30, 20] }}
         width={800}
-        height={400}
-        style={{ width: "100%", height: "auto" }}
+        height={420}
+        style={{ width: "100%", height: "100%" }}
       >
         <Geographies geography={WORLD_GEO_URL}>
           {({ geographies }) =>
@@ -109,10 +110,12 @@ function IndiaMap() {
 
   const viewBox = (indiaMapData as any).default?.viewBox || (indiaMapData as any).viewBox || "0 0 612 696";
 
+  const directors = stateDirectors as Record<string, { director: string; designation: string }>;
+
   return (
-    <div className="relative w-full flex flex-col lg:flex-row gap-6">
-      <div className="flex-1 flex justify-center">
-        <svg viewBox={viewBox} className="w-full max-w-md h-auto" style={{ maxHeight: "500px" }}>
+    <div className="relative w-full flex flex-col lg:flex-row gap-6" style={{ minHeight: "420px" }}>
+      <div className="flex-1 flex justify-center items-center">
+        <svg viewBox={viewBox} className="w-full max-w-sm h-auto" style={{ maxHeight: "400px" }}>
           {indiaStates.map((state: any) => {
             const isActive = stateOfficeMap[state.id];
             const isHovered = hoveredState === state.id;
@@ -159,15 +162,24 @@ function IndiaMap() {
       </div>
 
       {hoveredState && stateOfficeMap[hoveredState] && (
-        <div className="absolute top-4 left-4 z-50 w-56 shadow-elevated rounded-md overflow-hidden pointer-events-none">
+        <div className="absolute top-4 left-4 z-50 w-60 shadow-elevated rounded-md overflow-hidden pointer-events-none">
           <div className="bg-foreground text-primary-foreground px-3 py-2 text-sm font-semibold">
             {stateOfficeMap[hoveredState].name}
           </div>
-          {stateOfficeMap[hoveredState].address && (
-            <div className="bg-card px-3 py-3 text-xs text-foreground leading-relaxed whitespace-pre-line">
-              {stateOfficeMap[hoveredState].address}
-            </div>
-          )}
+          <div className="bg-card px-3 py-3 text-xs text-foreground leading-relaxed space-y-1">
+            {directors[hoveredState]?.director && (
+              <p className="font-medium">{directors[hoveredState].director}</p>
+            )}
+            {directors[hoveredState]?.designation && directors[hoveredState]?.director && (
+              <p className="text-muted-foreground">{directors[hoveredState].designation}</p>
+            )}
+            {stateOfficeMap[hoveredState].address && (
+              <p className="whitespace-pre-line">{stateOfficeMap[hoveredState].address}</p>
+            )}
+            {!directors[hoveredState]?.director && !stateOfficeMap[hoveredState].address && (
+              <p className="text-muted-foreground italic">Details to be added</p>
+            )}
+          </div>
         </div>
       )}
     </div>
@@ -253,7 +265,7 @@ export function WorldMapSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4 }}
-              className="bg-card rounded-2xl border border-border/50 shadow-card p-6"
+              className="bg-card rounded-2xl border border-border/50 shadow-card p-6" style={{ minHeight: "460px" }}
             >
               {view === "global" ? <GlobalMap /> : <IndiaMap />}
             </motion.div>
