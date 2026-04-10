@@ -13,6 +13,7 @@ import Careers from "./pages/Careers";
 import People from "./pages/People";
 import TeamProfile from "./pages/TeamProfile";
 import CountryPage from "./pages/CountryPage";
+import IndiaInitiative from "./pages/IndiaInitiative";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
