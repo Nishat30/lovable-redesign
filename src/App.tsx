@@ -14,6 +14,7 @@ import People from "./pages/People";
 import TeamProfile from "./pages/TeamProfile";
 import CountryPage from "./pages/CountryPage";
 import IndiaInitiative from "./pages/IndiaInitiative";
+import Partners from "./pages/Partners";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/people/:id" element={<TeamProfile />} />
           <Route path="/country/:countrySlug" element={<CountryPage />} />
           <Route path="/india" element={<IndiaInitiative />} />
+          <Route path="/partners" element={<Partners />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
