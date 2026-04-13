@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Play, Leaf, Users, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-rural-landscape.jpg";
 
 export function HeroSection() {
@@ -57,9 +58,11 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-wrap gap-4"
           >
-            <Button size="lg" variant="accent" className="text-base">
-              Explore Programs
-              <ArrowRight className="w-5 h-5 ml-2" />
+            <Button size="lg" variant="accent" className="text-base" asChild>
+              <Link to="/partners">
+                Explore Partners
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Link>
             </Button>
             <Button
               size="lg"
