@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { Compass, Calendar, Mail, Facebook, Twitter, Linkedin, Instagram, Youtube, Info } from "lucide-react";
 
 const regionalHeads = [
-  { name: "Asia", href: "/global" },
-  { name: "Africa", href: "/global" },
-  { name: "Australia", href: "/global" },
-  { name: "Europe", href: "/global" },
-  { name: "North America", href: "/global" },
-  { name: "South America", href: "/global" },
+  { name: "Asia", href: "/global?continent=asia" },
+  { name: "Africa", href: "/global?continent=africa" },
+  { name: "Australia", href: "/global?continent=australia" },
+  { name: "Europe", href: "/global?continent=europe" },
+  { name: "North America", href: "/global?continent=north-america" },
+  { name: "South America", href: "/global?continent=south-america" },
 ];
 
 const socialLinks = [
