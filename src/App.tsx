@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Academy from "./pages/Academy";
+import AcademyArticle from "./pages/AcademyArticle";
 import MediaCoverage from "./pages/MediaCoverage";
 import GlobalInitiative from "./pages/GlobalInitiative";
 import GlobalProfile from "./pages/GlobalProfile";
@@ -30,6 +31,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/academy" element={<Academy />} />
+          <Route path="/academy/:id" element={<AcademyArticle />} />
           <Route path="/media-coverage" element={<MediaCoverage />} />
           <Route path="/global" element={<GlobalInitiative />} />
           <Route path="/global/profile/:id" element={<GlobalProfile />} />
