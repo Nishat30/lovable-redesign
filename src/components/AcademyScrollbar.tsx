@@ -45,17 +45,18 @@ export function AcademyScrollbar() {
       <div className="relative">
         <div className="flex animate-scroll gap-6 px-4" style={{ width: "max-content" }}>
           {duplicated.map((article, i) => {
-            const Icon = iconMap[article.icon] || BookOpen;
-            const hasLogo = article.logo && article.logo.length > 0;
+            const a = article as any;
+            const Icon = iconMap[a.icon] || BookOpen;
+            const hasLogo = a.logo && a.logo.length > 0;
             return (
               <Link
                 key={`${article.id}-${i}`}
-                to="/academy"
+                to={`/academy/${article.id}`}
                 className="group flex-shrink-0 w-72 bg-card rounded-2xl border border-border/50 p-6 hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
               >
                 {hasLogo ? (
                   <div className="w-16 h-16 rounded-xl overflow-hidden mb-4 bg-muted flex items-center justify-center">
-                    <img src={article.logo} alt={article.shortTitle} className="w-full h-full object-contain" />
+                    <img src={a.logo} alt={article.shortTitle} className="w-full h-full object-contain" />
                   </div>
                 ) : (
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
@@ -66,7 +67,7 @@ export function AcademyScrollbar() {
                   {article.shortTitle}
                 </h3>
                 <p className="text-muted-foreground text-sm line-clamp-2">
-                  {article.content.substring(0, 100)}...
+                  {(article.content || "").substring(0, 100)}...
                 </p>
               </Link>
             );
