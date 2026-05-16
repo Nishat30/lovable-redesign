@@ -1,27 +1,15 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Globe, Facebook, Twitter, Linkedin, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { Compass, Calendar, Mail, Facebook, Twitter, Linkedin, Instagram, Youtube, Info } from "lucide-react";
 
-const footerLinks = {
-  programs: [
-    { name: "GFSRD Academy", href: "/academy", isRoute: true },
-    { name: "Global Initiatives", href: "/global", isRoute: true },
-    { name: "Media Coverage", href: "/media-coverage", isRoute: true },
-    { name: "Careers", href: "/careers", isRoute: true },
-  ],
-  about: [
-    { name: "About Us", href: "/about", isRoute: true },
-    { name: "Our Team", href: "/about", isRoute: true },
-    { name: "Partners", href: "#", isRoute: false },
-    { name: "Contact", href: "#contact", isRoute: false },
-  ],
-  resources: [
-    { name: "Publications", href: "#", isRoute: false },
-    { name: "Research", href: "#", isRoute: false },
-    { name: "Case Studies", href: "#", isRoute: false },
-    { name: "Glossary", href: "/academy", isRoute: true },
-  ],
-};
+const regionalHeads = [
+  { name: "Asia", href: "/global" },
+  { name: "Africa", href: "/global" },
+  { name: "Australia", href: "/global" },
+  { name: "Europe", href: "/global" },
+  { name: "North America", href: "/global" },
+  { name: "South America", href: "/global" },
+];
 
 const socialLinks = [
   { icon: Facebook, href: "https://facebook.com/gfsrd", label: "Facebook" },
@@ -36,80 +24,97 @@ export function Footer() {
     <footer className="bg-foreground text-primary-foreground">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Main Footer */}
-        <div className="py-16 lg:py-20 grid md:grid-cols-2 lg:grid-cols-5 gap-12">
-          {/* Brand Column */}
-          <div className="lg:col-span-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="flex items-center gap-3 mb-6"
-            >
-              <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-                <Globe className="w-7 h-7 text-primary-foreground" />
-              </div>
-              <div>
-                <span className="font-display text-lg font-semibold">GFSRD</span>
-                <span className="block text-xs text-primary-foreground/70">
-                  Global Forum for Sustainable Rural Development
-                </span>
-              </div>
-            </motion.div>
-            <p className="text-primary-foreground/70 mb-6 max-w-md">
-              Empowering rural communities worldwide through sustainable
-              agriculture, education, and collaborative partnerships since 2005.
-            </p>
-
-            {/* Contact Info */}
-            <div className="space-y-3">
-              <a
-                href="mailto:info@gfsrd.org"
-                className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors"
-              >
-                <Mail className="w-5 h-5" />
-                info@gfsrd.org
-              </a>
-              <a
-                href="tel:+41227889900"
-                className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors"
-              >
-                <Phone className="w-5 h-5" />
-                +41 22 788 99 00
-              </a>
-              <div className="flex items-center gap-3 text-primary-foreground/70">
-                <MapPin className="w-5 h-5" />
-                Geneva, Switzerland
-              </div>
+        <div className="py-16 lg:py-20 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* About */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center gap-2 mb-5">
+              <Info className="w-5 h-5 text-accent" />
+              <h4 className="font-display font-semibold tracking-wide uppercase text-sm">
+                About GFSRD
+              </h4>
             </div>
+            <p className="text-primary-foreground/70 text-sm leading-relaxed">
+              GFSRD is registered as Not-For-Profit Company under Section 8/15
+              under Ministry of Corporate Affairs, Government of India. GFSRD is
+              also ISO 9001: 2015 certified Not-For-Profit Company with a
+              mission to create a platform to bring and link Rural Development
+              Research, Policies and Practices in one umbrella and advocate for
+              Sustainable Rural Development globally.
+            </p>
+          </motion.div>
+
+          {/* Regional Heads */}
+          <div>
+            <div className="flex items-center gap-2 mb-5">
+              <Compass className="w-5 h-5 text-accent" />
+              <h4 className="font-display font-semibold tracking-wide uppercase text-sm">
+                Regional Heads
+              </h4>
+            </div>
+            <ul className="divide-y divide-primary-foreground/10">
+              {regionalHeads.map((r) => (
+                <li key={r.name}>
+                  <Link
+                    to={r.href}
+                    className="block py-2 text-primary-foreground/80 hover:text-accent transition-colors text-sm"
+                  >
+                    {r.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Links Columns */}
-          {Object.entries(footerLinks).map(([key, links]) => (
-            <div key={key}>
-              <h4 className="font-display font-semibold mb-4 capitalize">{key}</h4>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.name}>
-                    {link.isRoute ? (
-                      <Link
-                        to={link.href}
-                        className="text-primary-foreground/70 hover:text-accent transition-colors"
-                      >
-                        {link.name}
-                      </Link>
-                    ) : (
-                      <a
-                        href={link.href}
-                        className="text-primary-foreground/70 hover:text-accent transition-colors"
-                      >
-                        {link.name}
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
+          {/* Upcoming Events */}
+          <div>
+            <div className="flex items-center gap-2 mb-5">
+              <Calendar className="w-5 h-5 text-accent" />
+              <h4 className="font-display font-semibold tracking-wide uppercase text-sm">
+                Upcoming Events
+              </h4>
             </div>
-          ))}
+            <p className="text-primary-foreground/70 text-sm">There are no events</p>
+          </div>
+
+          {/* Quick Contact */}
+          <div>
+            <div className="flex items-center gap-2 mb-5">
+              <Mail className="w-5 h-5 text-accent" />
+              <h4 className="font-display font-semibold tracking-wide uppercase text-sm">
+                Quick Contact
+              </h4>
+            </div>
+            <address className="not-italic text-primary-foreground/70 text-sm leading-relaxed">
+              Vill + P.O – Bahiri<br />
+              P.S – Bolpur, Dist – Birbhum<br />
+              West Bengal, India<br />
+              PIN – 731240
+            </address>
+            <div className="mt-4 space-y-1 text-sm">
+              <p className="text-primary-foreground/70">
+                <span className="font-semibold text-primary-foreground">Phone:</span>{" "}
+                <a href="tel:+91943123886" className="hover:text-accent transition-colors">
+                  (91) 943123886
+                </a>
+              </p>
+              <p className="text-primary-foreground/70">
+                <span className="font-semibold text-primary-foreground">Email:</span>{" "}
+                <a
+                  href="mailto:gfsrd.international@gmail.com"
+                  className="hover:text-accent transition-colors break-all"
+                >
+                  gfsrd.international@gmail.com
+                </a>
+              </p>
+            </div>
+            <p className="mt-6 text-right font-semibold text-primary-foreground">
+              Total Visitor
+            </p>
+          </div>
         </div>
 
         {/* Bottom Bar */}
