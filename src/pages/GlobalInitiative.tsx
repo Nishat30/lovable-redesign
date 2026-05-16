@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -9,8 +9,22 @@ import globalData from "@/data/globalInitiative.json";
 const continents = globalData.continents;
 
 export default function GlobalInitiative() {
-  const [activeContinent, setActiveContinent] = useState(continents[0].id);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initial = continents.find((c) => c.id === searchParams.get("continent"))?.id ?? continents[0].id;
+  const [activeContinent, setActiveContinent] = useState(initial);
   const current = continents.find((c) => c.id === activeContinent)!;
+
+  useEffect(() => {
+    const param = searchParams.get("continent");
+    if (param && continents.find((c) => c.id === param) && param !== activeContinent) {
+      setActiveContinent(param);
+    }
+  }, [searchParams]);
+
+  const handleSelect = (id: string) => {
+    setActiveContinent(id);
+    setSearchParams({ continent: id });
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -59,7 +73,7 @@ export default function GlobalInitiative() {
                     return (
                       <button
                         key={continent.id}
-                        onClick={() => setActiveContinent(continent.id)}
+                        onClick={() => handleSelect(continent.id)}
                         className={`w-full flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-medium transition-all duration-200 mb-1 ${
                           isActive
                             ? "bg-primary text-primary-foreground shadow-soft"
