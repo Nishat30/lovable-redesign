@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { ArrowRight, GraduationCap, Leaf } from "lucide-react";
+import { GraduationCap, Leaf } from "lucide-react";
 import academyData from "@/data/academyArticles.json";
 
 export default function Academy() {
