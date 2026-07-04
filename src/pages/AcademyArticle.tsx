@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Target, Eye, ListChecks, Sparkles, BookOpen } from "lucide-react";
+import { ArrowLeft, Target, Eye, ListChecks, Sparkles, BookOpen, User, Mail, Phone, Linkedin } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import academyData from "@/data/academyArticles.json";
@@ -27,6 +27,7 @@ export default function AcademyArticle() {
   }
 
   const a = article as any;
+  const head = a.head || {};
   const objectives: string[] =
     typeof a.objectives === "string"
       ? a.objectives.split(/\n\n+/).map((s: string) => s.replace(/^•\s*/, "").trim()).filter(Boolean)
@@ -79,6 +80,59 @@ export default function AcademyArticle() {
 
         {/* Content */}
         <article className="container mx-auto px-4 max-w-4xl space-y-8">
+          {/* Academy Head */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-card rounded-2xl shadow-card border border-border p-6 md:p-8"
+          >
+            <span className="inline-block text-xs font-semibold uppercase tracking-wider text-accent mb-4">
+              Academy Head
+            </span>
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              <div className="w-[160px] h-[180px] flex-shrink-0 rounded-xl bg-secondary/50 border border-border flex items-center justify-center overflow-hidden">
+                {head.image ? (
+                  <img src={head.image} alt={head.name || "Academy Head"} className="w-full h-full object-cover" />
+                ) : (
+                  <User className="w-16 h-16 text-muted-foreground" />
+                )}
+              </div>
+              <div className="flex-1 space-y-3">
+                <h2 className="font-playfair text-2xl md:text-3xl font-bold text-foreground">
+                  {head.name || "Head details coming soon"}
+                </h2>
+                {head.role && (
+                  <p className="text-primary font-medium">{head.role}</p>
+                )}
+                {head.bio && (
+                  <p className="text-muted-foreground leading-relaxed">{head.bio}</p>
+                )}
+                <div className="flex flex-col gap-2 pt-1">
+                  {head.email && (
+                    <a href={`mailto:${head.email}`} className="flex items-center gap-2 text-primary hover:underline text-sm">
+                      <Mail className="w-4 h-4" /> {head.email}
+                    </a>
+                  )}
+                  {head.phone && (
+                    <a href={`tel:${head.phone}`} className="flex items-center gap-2 text-primary hover:underline text-sm">
+                      <Phone className="w-4 h-4" /> {head.phone}
+                    </a>
+                  )}
+                  {head.linkedin && (
+                    <a
+                      href={head.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           {article.content && (
             <div className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-sm">
               <p className="text-foreground/85 leading-relaxed text-base md:text-lg whitespace-pre-line">
