@@ -35,52 +35,37 @@ export default function Academy() {
 
         {/* Cards Grid */}
         <section className="container mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
             {academyData.articles.map((article, idx) => (
               <motion.div
                 key={article.id}
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.04, duration: 0.4 }}
+                transition={{ delay: idx * 0.03, duration: 0.4 }}
               >
                 <Link
                   to={`/academy/${article.id}`}
-                  className="group block bg-card border border-border rounded-2xl p-6 h-full hover:shadow-elevated hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden"
+                  className="group flex flex-col items-center justify-start text-center bg-card border border-border rounded-2xl p-6 h-full hover:shadow-elevated hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-hero opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-20 h-20 shrink-0 rounded-xl bg-secondary/60 border border-border flex items-center justify-center overflow-hidden p-2 group-hover:scale-105 transition-transform duration-300">
-                      {(article as any).logo ? (
-                        <img
-                          src={(article as any).logo}
-                          alt={article.shortTitle}
-                          className="w-full h-full object-contain"
-                          onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).style.display = "none";
-                          }}
-                        />
-                      ) : (
-                        <Leaf className="w-8 h-8 text-primary" />
-                      )}
-                    </div>
-                    <div className="min-w-0">
-                      <h3 className="font-playfair text-lg font-bold text-foreground leading-tight group-hover:text-primary transition-colors">
-                        {article.shortTitle}
-                      </h3>
-                      <p className="text-xs text-accent font-medium mt-1">
-                        GFSRD Global Centre
-                      </p>
-                    </div>
+                  <div className="w-28 h-28 rounded-2xl bg-secondary/60 border border-border flex items-center justify-center overflow-hidden p-3 mb-4 group-hover:scale-105 transition-transform duration-300">
+                    {(article as any).logo ? (
+                      <img
+                        src={(article as any).logo}
+                        alt={article.shortTitle}
+                        className="w-full h-full object-contain"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).style.display = "none";
+                        }}
+                      />
+                    ) : (
+                      <Leaf className="w-10 h-10 text-primary" />
+                    )}
                   </div>
-
-                  <p className="text-sm text-muted-foreground leading-relaxed line-clamp-4">
-                    {article.content}
-                  </p>
-
-                  <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary group-hover:gap-3 transition-all">
-                    Read more <ArrowRight className="w-4 h-4" />
-                  </div>
+                  <h3 className="font-playfair text-base font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
+                    {article.shortTitle}
+                  </h3>
                 </Link>
               </motion.div>
             ))}
