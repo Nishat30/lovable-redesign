@@ -1,0 +1,103 @@
+{
+  "events": [
+    {
+      "id": "himalayan-tribes-2023",
+      "title": "International Hybrid Conference on History and Culture of Himalayan Tribes: Status and Continuity",
+      "type": "Conference",
+      "startTime": "2023-10-27T12:00:00",
+      "endTime": "2023-10-28T12:00:00",
+      "brochure": "#",
+      "location": "Haryana",
+      "organiser": "gfsrd.india@gmail.com",
+      "mediaCoverage": ""
+    },
+    {
+      "id": "bamboo-sdgs-2023",
+      "title": "International online conference on Bamboo for Accelerating Sustainable Development Goals (SDGs)",
+      "type": "Conference",
+      "startTime": "2023-09-18T18:00:00",
+      "endTime": "2023-09-18T20:00:00",
+      "brochure": "#",
+      "location": "Meet Link",
+      "organiser": "gfsrd.india@gmail.com",
+      "mediaCoverage": ""
+    },
+    {
+      "id": "indigenous-people-2023",
+      "title": "International Conference on Indigenous People: Issues and Challenges",
+      "type": "Conference",
+      "startTime": "2023-08-09T18:00:00",
+      "endTime": "2023-08-09T20:30:00",
+      "brochure": "#",
+      "location": "Meet Link",
+      "organiser": "gfsrd.india@gmail.com",
+      "mediaCoverage": ""
+    },
+    {
+      "id": "social-work-2023",
+      "title": "International Conference on Social Work, Sciences, Technologies, Environment, Climate Change, Disaster Management, Health, Wellbeing, Sustainable Development 2023",
+      "type": "Conference",
+      "startTime": "2023-08-13T18:30:00",
+      "endTime": "2023-08-22T20:00:00",
+      "brochure": "#",
+      "location": "Zoom Link",
+      "organiser": "gfsrd.india@gmail.com",
+      "mediaCoverage": ""
+    },
+    {
+      "id": "friendship-solidarity-2023",
+      "title": "International Conference on Friendship, Human Solidarity, Diversity, Trafficking, Exploitation, Slavery, Awareness, Education, Employment, Environment, Health, Well Being, Sustainable Development 2023",
+      "type": "Conference",
+      "startTime": "2023-08-13T18:30:00",
+      "endTime": "2023-08-13T18:30:00",
+      "brochure": "#",
+      "location": "Zoom Link",
+      "organiser": "gfsrd.india@gmail.com",
+      "mediaCoverage": ""
+    },
+    {
+      "id": "youth-education-2023",
+      "title": "Two Days International Conference on Youth, Education, Careers, Training, Skill Development, Employment, Environment, Health, Well being, Sustainable Development 2023",
+      "type": "Conference",
+      "startTime": "2023-07-15T18:00:00",
+      "endTime": "2023-07-16T21:00:00",
+      "brochure": "#",
+      "location": "Zoom Link",
+      "organiser": "gfsrd.india@gmail.com",
+      "mediaCoverage": ""
+    },
+    {
+      "id": "rural-development-2026",
+      "title": "International Summit on Sustainable Rural Development & Green Economy",
+      "type": "Summit",
+      "startTime": "2026-09-15T10:00:00",
+      "endTime": "2026-09-16T17:00:00",
+      "brochure": "#",
+      "location": "New Delhi",
+      "organiser": "gfsrd.india@gmail.com",
+      "mediaCoverage": ""
+    },
+    {
+      "id": "climate-action-2026",
+      "title": "Global Conference on Climate Action & Community Resilience",
+      "type": "Conference",
+      "startTime": "2026-11-05T09:00:00",
+      "endTime": "2026-11-07T18:00:00",
+      "brochure": "#",
+      "location": "Hybrid – Zoom Link",
+      "organiser": "gfsrd.india@gmail.com",
+      "mediaCoverage": ""
+    },
+    {
+      "id": "women-empowerment-2026",
+      "title": "International Symposium on Women Empowerment & Gender Equality in Rural Areas",
+      "type": "Symposium",
+      "startTime": "2026-08-08T10:00:00",
+      "endTime": "2026-08-08T17:00:00",
+      "brochure": "#",
+      "location": "Meet Link",
+      "organiser": "gfsrd.india@gmail.com",
+      "mediaCoverage": ""
+    }
+  ]
+}
