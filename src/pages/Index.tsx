@@ -13,7 +13,6 @@ import { NewsletterSection } from "@/components/NewsletterSection";
 import { ActivitySection } from "@/components/ActivitySection";
 import { SocialSection } from "@/components/SocialSection";
 import { WorldMapSection } from "@/components/WorldMapSection";
-import { EventsSection } from "@/components/EventsSection";
 
 const Index = () => {
   return (
@@ -37,7 +36,6 @@ const Index = () => {
           </div>
         </section>
         <ActivitySection />
-        <EventsSection />
         <WorldMapSection />
         <TeamSection />
         <NewsSection />
