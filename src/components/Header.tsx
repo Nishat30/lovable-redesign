@@ -25,6 +25,7 @@ const navItems: NavItem[] = [
   { name: "Academy", href: "/academy", isRoute: true },
   { name: "Global Initiative", href: "/global", isRoute: true },
   { name: "Media", href: "/media-coverage", isRoute: true },
+  { name: "Events", href: "/events", isRoute: true },
   { name: "Careers", href: "/careers", isRoute: true },
   { name: "Contact", href: "#contact" },
 ];
