@@ -13,6 +13,7 @@ import { NewsletterSection } from "@/components/NewsletterSection";
 import { ActivitySection } from "@/components/ActivitySection";
 import { SocialSection } from "@/components/SocialSection";
 import { WorldMapSection } from "@/components/WorldMapSection";
+import { JoinUsSection } from "@/components/JoinUsSection";
 
 const Index = () => {
   return (
@@ -39,6 +40,7 @@ const Index = () => {
         <WorldMapSection />
         <TeamSection />
         <NewsSection />
+        <JoinUsSection />
         <NewsletterSection />
         <SocialSection />
         <CTASection />
