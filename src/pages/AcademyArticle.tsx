@@ -80,14 +80,14 @@ export default function AcademyArticle() {
 
         {/* Content */}
         <article className="container mx-auto px-4 max-w-4xl space-y-8">
-          {/* Academy Head */}
+          {/* Part 1 — Academy Head */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="bg-card rounded-2xl shadow-card border border-border p-6 md:p-8"
           >
             <span className="inline-block text-xs font-semibold uppercase tracking-wider text-accent mb-4">
-              Academy Head
+              Part 1 — Academy Head
             </span>
             <div className="flex flex-col md:flex-row gap-6 items-start">
               <div className="w-[160px] h-[180px] flex-shrink-0 rounded-xl bg-secondary/50 border border-border flex items-center justify-center overflow-hidden">
@@ -133,52 +133,64 @@ export default function AcademyArticle() {
             </div>
           </motion.div>
 
-          {article.content && (
-            <div className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-sm">
-              <p className="text-foreground/85 leading-relaxed text-base md:text-lg whitespace-pre-line">
-                {article.content}
-              </p>
-            </div>
-          )}
+          {/* Part 2 — Centre Details */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-sm space-y-8"
+          >
+            <span className="inline-block text-xs font-semibold uppercase tracking-wider text-primary mb-2">
+              Part 2 — Centre Details
+            </span>
 
-          {a.mission && (
-            <Section icon={<Target className="w-5 h-5" />} title="Mission">
-              {a.mission}
-            </Section>
-          )}
-
-          {a.vision && (
-            <Section icon={<Eye className="w-5 h-5" />} title="Vision">
-              {a.vision}
-            </Section>
-          )}
-
-          {objectives.length > 0 && (
-            <div className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
-                  <ListChecks className="w-5 h-5" />
-                </div>
-                <h2 className="font-playfair text-2xl font-bold text-foreground">
-                  Objectives
-                </h2>
+            {article.content && (
+              <div>
+                <p className="text-foreground/85 leading-relaxed text-base md:text-lg whitespace-pre-line">
+                  {article.content}
+                </p>
               </div>
-              <ul className="space-y-3">
-                {objectives.map((obj, i) => (
-                  <li key={i} className="flex gap-3 text-foreground/80 leading-relaxed">
-                    <span className="text-primary mt-1.5 shrink-0">●</span>
-                    <span>{obj}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+            )}
 
-          {a.conclusion && (
-            <Section icon={<Sparkles className="w-5 h-5" />} title="Conclusion">
-              {a.conclusion}
-            </Section>
-          )}
+            {a.mission && (
+              <SubSection icon={<Target className="w-5 h-5" />} title="Mission">
+                {a.mission}
+              </SubSection>
+            )}
+
+            {a.vision && (
+              <SubSection icon={<Eye className="w-5 h-5" />} title="Vision">
+                {a.vision}
+              </SubSection>
+            )}
+
+            {objectives.length > 0 && (
+              <div>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
+                    <ListChecks className="w-5 h-5" />
+                  </div>
+                  <h2 className="font-playfair text-2xl font-bold text-foreground">
+                    Objectives
+                  </h2>
+                </div>
+                <ul className="space-y-3">
+                  {objectives.map((obj, i) => (
+                    <li key={i} className="flex gap-3 text-foreground/80 leading-relaxed">
+                      <span className="text-primary mt-1.5 shrink-0">●</span>
+                      <span>{obj}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {a.conclusion && (
+              <SubSection icon={<Sparkles className="w-5 h-5" />} title="Conclusion">
+                {a.conclusion}
+              </SubSection>
+            )}
+          </motion.div>
         </article>
       </main>
 
