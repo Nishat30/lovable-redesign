@@ -4,6 +4,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { joinUsOptions } from "@/components/JoinUsSection";
+import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
@@ -139,7 +146,27 @@ export function Header() {
             <Button variant="ghost" size="sm" className="text-muted-foreground">
               EN <ChevronDown className="ml-1 w-3 h-3" />
             </Button>
-            <Button variant="hero">Join Us</Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="hero">
+                  Join Us <ChevronDown className="ml-1 w-4 h-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                {joinUsOptions.map((opt) => (
+                  <DropdownMenuItem key={opt.id} asChild>
+                    <a
+                      href={opt.formUrl || "#join-us"}
+                      target={opt.formUrl ? "_blank" : undefined}
+                      rel="noopener noreferrer"
+                      className="cursor-pointer"
+                    >
+                      {opt.title}
+                    </a>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -192,9 +219,21 @@ export function Header() {
                   </motion.a>
                 )
               )}
-              <Button variant="hero" className="w-full mt-4">
-                Join Us
-              </Button>
+              <div className="mt-4 space-y-2">
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1">Join Us</p>
+                {joinUsOptions.map((opt) => (
+                  <a
+                    key={opt.id}
+                    href={opt.formUrl || "#join-us"}
+                    target={opt.formUrl ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block py-2 px-3 rounded-md text-foreground font-medium hover:bg-secondary"
+                  >
+                    {opt.title}
+                  </a>
+                ))}
+              </div>
             </nav>
           </motion.div>
         )}
