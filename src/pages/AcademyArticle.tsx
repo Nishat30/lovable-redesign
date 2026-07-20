@@ -78,26 +78,26 @@ export default function AcademyArticle() {
           </div>
         </section>
 
-        {/* Content */}
-        <article className="container mx-auto px-4 max-w-4xl space-y-8">
-          {/* Part 1 — Academy Head */}
+        {/* Content — two-part side-by-side layout */}
+        <article className="container mx-auto px-4 max-w-7xl grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-8 items-start">
+          {/* Part 1 — Academy Head (left) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-card rounded-2xl shadow-card border border-border p-6 md:p-8"
+            className="bg-card rounded-2xl shadow-card border border-border p-6 md:p-8 lg:sticky lg:top-28"
           >
             <span className="inline-block text-xs font-semibold uppercase tracking-wider text-accent mb-4">
               Part 1 — Academy Head
             </span>
-            <div className="flex flex-col md:flex-row gap-6 items-start">
-              <div className="w-[160px] h-[180px] flex-shrink-0 rounded-xl bg-secondary/50 border border-border flex items-center justify-center overflow-hidden">
+            <div className="flex flex-col gap-5 items-center text-center">
+              <div className="w-full aspect-[4/5] max-w-[280px] rounded-xl bg-secondary/50 border border-border flex items-center justify-center overflow-hidden">
                 {head.image ? (
                   <img src={head.image} alt={head.name || "Academy Head"} className="w-full h-full object-cover" />
                 ) : (
-                  <User className="w-16 h-16 text-muted-foreground" />
+                  <User className="w-20 h-20 text-muted-foreground" />
                 )}
               </div>
-              <div className="flex-1 space-y-3">
+              <div className="w-full space-y-3">
                 <h2 className="font-playfair text-2xl md:text-3xl font-bold text-foreground">
                   {head.name || "Head details coming soon"}
                 </h2>
@@ -105,9 +105,9 @@ export default function AcademyArticle() {
                   <p className="text-primary font-medium">{head.role}</p>
                 )}
                 {head.bio && (
-                  <p className="text-muted-foreground leading-relaxed">{head.bio}</p>
+                  <p className="text-muted-foreground leading-relaxed text-sm">{head.bio}</p>
                 )}
-                <div className="flex flex-col gap-2 pt-1">
+                <div className="flex flex-col items-center gap-2 pt-1">
                   {head.email && (
                     <a href={`mailto:${head.email}`} className="flex items-center gap-2 text-primary hover:underline text-sm">
                       <Mail className="w-4 h-4" /> {head.email}
