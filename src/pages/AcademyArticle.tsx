@@ -199,7 +199,7 @@ export default function AcademyArticle() {
   );
 }
 
-function Section({
+function SubSection({
   icon,
   title,
   children,
@@ -209,7 +209,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-sm">
+    <div>
       <div className="flex items-center gap-3 mb-4">
         <div className="p-2.5 rounded-xl bg-primary/10 text-primary">{icon}</div>
         <h2 className="font-playfair text-2xl font-bold text-foreground">{title}</h2>
