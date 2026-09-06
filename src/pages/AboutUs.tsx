@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Building, Target, Eye, Award, Globe, Users, FileText, Shield, Heart, Lightbulb, BookOpen, Handshake, Megaphone, GraduationCap } from "lucide-react";
+import { AboutPhotoSlider } from "@/components/AboutPhotoSlider";
+import { Building, Target, Eye, Award, Globe, Users, FileText, Shield, Heart, Lightbulb, BookOpen, Handshake, Megaphone, GraduationCap, Quote } from "lucide-react";
+
 
 const goals = [
   { icon: Globe, text: "Work as a rural development network and policy think tank that develops and promotes alternative solutions to issues concerned with sustainable rural development." },
@@ -64,21 +66,67 @@ export default function AboutUs() {
           </div>
         </div>
 
-        {/* Who We Are + Credentials */}
+        {/* Who We Are + Photo Slider + Credentials */}
         <section className="py-14">
-          <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
-            <motion.div initial="hidden" whileInView="visible" custom={0} variants={fadeUp} viewport={{ once: true }}
-              className="bg-card rounded-2xl p-6 md:p-8 shadow-card border border-border/50 mb-6">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Building className="h-6 w-6 text-primary" />
+          <div className="container mx-auto px-4 lg:px-8 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-8 items-stretch">
+              <motion.div initial="hidden" whileInView="visible" custom={0} variants={fadeUp} viewport={{ once: true }}>
+                <div className="relative h-full bg-card rounded-2xl p-8 md:p-10 shadow-elevated border border-border/50 overflow-hidden group hover:shadow-card transition-shadow duration-300">
+                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-hero" />
+                  <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-primary/5 blur-3xl group-hover:bg-primary/10 transition-colors" />
+
+                  <div className="relative flex flex-col h-full">
+                    <div className="flex items-start gap-5 mb-6">
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-hero flex items-center justify-center shrink-0 shadow-soft">
+                        <Building className="h-8 w-8 text-primary-foreground" />
+                      </div>
+                      <div>
+                        <span className="text-xs font-semibold uppercase tracking-wider text-accent mb-1 block">
+                          About GFSRD
+                        </span>
+                        <h2 className="font-display text-2xl md:text-3xl font-semibold text-foreground">
+                          Who We Are
+                        </h2>
+                      </div>
+                    </div>
+
+                    <div className="relative flex-grow">
+                      <Quote className="absolute -top-2 left-0 w-8 h-8 text-primary/10 rotate-180" />
+                      <p className="text-foreground/80 leading-relaxed text-base md:text-lg pl-2">
+                        GFSRD is registered as a Not-For-Profit Company under Section 8/15 under the Ministry of Corporate Affairs, Government of India. GFSRD is also ISO 9001:2015 certified with a mission to create a platform to bring and link Rural Development Research, Policies and Practices under one umbrella and advocate for Sustainable Rural Development globally.
+                      </p>
+                    </div>
+
+                    <div className="mt-6 pt-6 border-t border-border/50 grid grid-cols-2 gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                          <Award className="h-5 w-5 text-primary" />
+                        </div>
+                        <div>
+                          <span className="text-sm font-semibold text-foreground block">ISO 9001:2015</span>
+                          <span className="text-xs text-muted-foreground">Certified</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+                          <FileText className="h-5 w-5 text-accent" />
+                        </div>
+                        <div>
+                          <span className="text-sm font-semibold text-foreground block">Section 8/15</span>
+                          <span className="text-xs text-muted-foreground">Registered NPO</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h2 className="font-display text-xl md:text-2xl font-semibold text-foreground">Who We Are</h2>
-              </div>
-              <p className="text-foreground/75 leading-relaxed">
-                GFSRD is registered as a Not-For-Profit Company under Section 8/15 under the Ministry of Corporate Affairs, Government of India. GFSRD is also ISO 9001:2015 certified Not-For-Profit Company with a mission to create a platform to bring and link Rural Development Research, Policies and Practices in one umbrella and advocate for Sustainable Rural Development globally.
-              </p>
-            </motion.div>
+              </motion.div>
+
+              <motion.div initial="hidden" whileInView="visible" custom={1} variants={fadeUp} viewport={{ once: true }}
+                className="min-h-[320px] md:min-h-[420px]">
+                <AboutPhotoSlider />
+              </motion.div>
+            </div>
+
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
               {[
