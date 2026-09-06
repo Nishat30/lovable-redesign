@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { Building, Target, Eye, Award, Globe, Users, FileText } from "lucide-react";
+import { Building, Target, Eye, Award, Globe, Users, FileText, Quote } from "lucide-react";
+import { AboutPhotoSlider } from "./AboutPhotoSlider";
+
 
 const credentials = [
   { icon: Award, label: "ISO 9001:2015 Certified", desc: "Quality management standard" },
