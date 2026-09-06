@@ -42,27 +42,77 @@ export function AboutSection() {
           </p>
         </motion.div>
 
-        {/* Organization Card */}
-        <motion.div
-          custom={0}
-          variants={cardVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="max-w-4xl mx-auto mb-8"
-        >
-          <div className="bg-card rounded-2xl p-8 md:p-10 shadow-elevated border border-border/50 hover:shadow-card transition-shadow duration-300">
-            <div className="flex items-center gap-4 mb-5">
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <Building className="h-7 w-7 text-primary" />
+        {/* Organization Card + Photo Slider */}
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto mb-12 items-stretch">
+          <motion.div
+            custom={0}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <div className="relative h-full bg-card rounded-2xl p-8 md:p-10 shadow-elevated border border-border/50 overflow-hidden group hover:shadow-card transition-shadow duration-300">
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-hero" />
+              <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-primary/5 blur-3xl group-hover:bg-primary/10 transition-colors" />
+
+              <div className="relative flex flex-col h-full">
+                <div className="flex items-start gap-5 mb-6">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-hero flex items-center justify-center shrink-0 shadow-soft">
+                    <Building className="h-8 w-8 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-accent mb-1 block">
+                      About GFSRD
+                    </span>
+                    <h3 className="font-display text-2xl md:text-3xl font-semibold text-foreground">
+                      Our Organization
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="relative flex-grow">
+                  <Quote className="absolute -top-2 left-0 w-8 h-8 text-primary/10 rotate-180" />
+                  <p className="text-foreground/80 leading-relaxed text-base md:text-lg pl-2">
+                    GFSRD is registered as a Not-For-Profit Company under Section 8/15 under the Ministry of Corporate Affairs, Government of India. GFSRD is also ISO 9001:2015 certified with a mission to create a platform to bring and link Rural Development Research, Policies and Practices under one umbrella and advocate for Sustainable Rural Development globally.
+                  </p>
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-border/50 grid grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <Award className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <span className="text-sm font-semibold text-foreground block">ISO 9001:2015</span>
+                      <span className="text-xs text-muted-foreground">Certified</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+                      <FileText className="h-5 w-5 text-accent" />
+                    </div>
+                    <div>
+                      <span className="text-sm font-semibold text-foreground block">Section 8/15</span>
+                      <span className="text-xs text-muted-foreground">Registered NPO</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground">Our Organization</h3>
             </div>
-            <p className="text-foreground/75 leading-relaxed text-base md:text-lg">
-              GFSRD is registered as Not-For-Profit Company under Section 8/15 under Ministry of Corporate Affairs, Government of India. GFSRD is also ISO 9001: 2015 certified Not-For-Profit Company with a mission to create a platform to bring and link Rural Development Research, Policies and Practices in one umbrella and advocate for Sustainable Rural Development globally.
-            </p>
-          </div>
-        </motion.div>
+          </motion.div>
+
+          <motion.div
+            custom={1}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="min-h-[320px] md:min-h-[420px]"
+          >
+            <AboutPhotoSlider />
+          </motion.div>
+        </div>
+
 
         {/* Mission & Vision Cards */}
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
