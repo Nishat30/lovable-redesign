@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Building, Target, Eye, Award, Globe, Users, FileText, Shield, Heart, Lightbulb, BookOpen, Handshake, Megaphone, GraduationCap } from "lucide-react";
+import { AboutPhotoSlider } from "@/components/AboutPhotoSlider";
+import { Building, Target, Eye, Award, Globe, Users, FileText, Shield, Heart, Lightbulb, BookOpen, Handshake, Megaphone, GraduationCap, Quote } from "lucide-react";
+
 
 const goals = [
   { icon: Globe, text: "Work as a rural development network and policy think tank that develops and promotes alternative solutions to issues concerned with sustainable rural development." },
