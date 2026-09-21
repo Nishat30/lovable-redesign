@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Target, Eye, ListChecks, Sparkles, BookOpen, User, Mail, Phone, Linkedin } from "lucide-react";
+import { ArrowLeft, Target, Eye, ListChecks, Sparkles, BookOpen, User, Mail, Phone, Linkedin, Handshake } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import academyData from "@/data/academyArticles.json";
@@ -129,6 +129,13 @@ export default function AcademyArticle() {
                     </a>
                   )}
                 </div>
+                <Link
+                  to="/#join-us"
+                  className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-hero px-5 py-3 text-sm font-semibold text-primary-foreground shadow-soft hover:shadow-elevated hover:-translate-y-0.5 transition-all"
+                >
+                  <Handshake className="w-4 h-4" />
+                  Join with Us
+                </Link>
               </div>
             </div>
           </motion.div>
