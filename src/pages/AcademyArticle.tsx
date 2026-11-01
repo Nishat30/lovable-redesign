@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowLeft, ChevronDown, BookOpen, User, Mail, Phone, Linkedin, Handshake,
-  Target, ListChecks, Sparkles, Eye
+  Target, ListChecks, Sparkles
 } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
