@@ -1,9 +1,13 @@
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Target, Eye, ListChecks, Sparkles, BookOpen, User, Mail, Phone, Linkedin, Handshake } from "lucide-react";
+import {
+  ArrowLeft, ChevronDown, BookOpen, User, Mail, Phone, Linkedin, Handshake,
+  Target, ListChecks, Sparkles, Eye
+} from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import academyData from "@/data/academyArticles.json";
+import orgPhoto from "@/assets/aardo-felicitation.png.asset.json";
 
 export default function AcademyArticle() {
   const { id } = useParams();
@@ -33,172 +37,234 @@ export default function AcademyArticle() {
       ? a.objectives.split(/\n\n+/).map((s: string) => s.replace(/^•\s*/, "").trim()).filter(Boolean)
       : [];
 
+  const navItems = [
+    { id: "about", label: "About Us" },
+    { id: "vision", label: "Vision", chevron: true },
+    { id: "mission", label: "Mission", chevron: true },
+    { id: "objectives", label: "Objectives", chevron: true },
+    { id: "head", label: "Academy Head" },
+    { id: "conclusion", label: "Conclusion" },
+  ];
+
+  const scrollTo = (sectionId: string) => {
+    const el = document.getElementById(sectionId);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
-      <main className="pt-24 pb-20">
-        {/* Hero */}
-        <section className="bg-gradient-hero text-primary-foreground py-14 mb-10">
-          <div className="container mx-auto px-4">
+      {/* ===== Banner strip: photo left, logo + centre name right ===== */}
+      <section className="bg-primary text-primary-foreground">
+        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] items-stretch">
+          {/* Photo strip */}
+          <div className="h-40 md:h-[230px] overflow-hidden">
+            <img
+              src={orgPhoto.url}
+              alt="GFSRD team"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Logo + name block */}
+          <div className="flex items-center gap-5 px-6 py-6 md:py-0 md:pl-10 md:pr-8">
+            <div className="w-24 h-24 md:w-32 md:h-32 shrink-0 rounded-full bg-primary-foreground border-4 border-primary-foreground/30 flex items-center justify-center overflow-hidden">
+              {a.logo ? (
+                <img
+                  src={a.logo}
+                  alt={article.shortTitle}
+                  className="w-full h-full object-contain"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).style.display = "none";
+                  }}
+                />
+              ) : (
+                <BookOpen className="w-10 h-10 text-primary" />
+              )}
+            </div>
+            <h1 className="uppercase text-xl md:text-2xl lg:text-3xl font-semibold tracking-wide leading-snug">
+              {article.shortTitle}
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== Body: Quick View sidebar + content ===== */}
+      <main className="container mx-auto px-4 py-10 lg:py-14 grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-10 items-start">
+        {/* Sidebar */}
+        <aside className="w-full max-w-md lg:max-w-none mx-auto lg:mx-0 border border-border rounded-xl overflow-hidden bg-card shadow-card lg:sticky lg:top-28">
+          <div className="bg-primary text-primary-foreground text-center py-3">
+            <span className="font-playfair text-lg font-semibold tracking-wide">Quick View</span>
+          </div>
+          <nav className="flex flex-col">
             <Link
               to="/academy"
-              className="inline-flex items-center gap-2 text-sm text-primary-foreground/90 hover:text-primary-foreground mb-6"
+              className="px-5 py-3.5 text-sm font-semibold uppercase tracking-wide bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
             >
-              <ArrowLeft className="w-4 h-4" /> Back to Academy
+              All Centres
             </Link>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex flex-col md:flex-row items-start md:items-center gap-6"
-            >
-              <div className="w-24 h-24 shrink-0 rounded-2xl bg-primary-foreground/10 border border-primary-foreground/20 backdrop-blur-sm flex items-center justify-center overflow-hidden p-3">
-                {a.logo ? (
-                  <img
-                    src={a.logo}
-                    alt={article.shortTitle}
-                    className="w-full h-full object-contain"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display = "none";
-                    }}
-                  />
-                ) : (
-                  <BookOpen className="w-10 h-10" />
-                )}
-              </div>
-              <div>
-                <span className="inline-block text-xs font-semibold uppercase tracking-wider text-primary-foreground/80 mb-2">
-                  GFSRD Academy
-                </span>
-                <h1 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-                  {article.title}
-                </h1>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className="flex items-center justify-between px-5 py-3.5 text-sm font-semibold uppercase tracking-wide text-foreground/80 bg-card hover:bg-muted transition-colors border-t border-border text-left"
+              >
+                {item.label}
+                {item.chevron && <ChevronDown className="w-4 h-4 text-muted-foreground" />}
+              </button>
+            ))}
+          </nav>
+        </aside>
 
-        {/* Content — two-part side-by-side layout */}
-        <article className="container mx-auto px-4 max-w-7xl grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-8 items-start">
-          {/* Part 1 — Academy Head (left) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-card rounded-2xl shadow-card border border-border p-6 md:p-8 lg:sticky lg:top-28"
-          >
-            <span className="inline-block text-xs font-semibold uppercase tracking-wider text-accent mb-4">
-              Part 1 — Academy Head
-            </span>
-            <div className="flex flex-col gap-5 items-center text-center">
-              <div className="w-full aspect-[4/5] max-w-[280px] rounded-xl bg-secondary/50 border border-border flex items-center justify-center overflow-hidden">
-                {head.image ? (
-                  <img src={head.image} alt={head.name || "Academy Head"} className="w-full h-full object-cover" />
-                ) : (
-                  <User className="w-20 h-20 text-muted-foreground" />
-                )}
-              </div>
-              <div className="w-full space-y-3">
-                <h2 className="font-playfair text-2xl md:text-3xl font-bold text-foreground">
-                  {head.name || "Head details coming soon"}
-                </h2>
-                {head.role && (
-                  <p className="text-primary font-medium">{head.role}</p>
-                )}
-                {head.bio && (
-                  <p className="text-muted-foreground leading-relaxed text-sm">{head.bio}</p>
-                )}
-                <div className="flex flex-col items-center gap-2 pt-1">
-                  {head.email && (
-                    <a href={`mailto:${head.email}`} className="flex items-center gap-2 text-primary hover:underline text-sm">
-                      <Mail className="w-4 h-4" /> {head.email}
-                    </a>
-                  )}
-                  {head.phone && (
-                    <a href={`tel:${head.phone}`} className="flex items-center gap-2 text-primary hover:underline text-sm">
-                      <Phone className="w-4 h-4" /> {head.phone}
-                    </a>
-                  )}
-                  {head.linkedin && (
-                    <a
-                      href={head.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
-                      <Linkedin className="w-4 h-4" />
-                    </a>
+        {/* Content */}
+        <motion.article
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          {/* Title + rule */}
+          <div id="about" className="scroll-mt-28 mb-8">
+            <h2 className="font-playfair text-2xl md:text-3xl font-bold text-primary leading-snug pb-4 border-b border-border">
+              {article.title}
+            </h2>
+          </div>
+
+          {/* Vision */}
+          {a.vision && (
+            <p id="vision" className="scroll-mt-28 text-foreground/85 leading-relaxed text-base md:text-lg mb-8">
+              <span className="font-bold text-foreground">Our Vision:</span>{" "}
+              <span className="whitespace-pre-line">{a.vision}</span>
+            </p>
+          )}
+
+          {/* Contact line */}
+          {(head.email || head.phone) && (
+            <div className="space-y-1.5 mb-8 text-foreground/85">
+              {head.email && (
+                <p>
+                  <span className="font-bold text-foreground">Email: </span>
+                  <a href={`mailto:${head.email}`} className="text-primary hover:underline">{head.email}</a>
+                </p>
+              )}
+              {head.phone && (
+                <p>
+                  <span className="font-bold text-foreground">Phone: </span>
+                  <a href={`tel:${head.phone}`} className="text-primary hover:underline">{head.phone}</a>
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Brief profile */}
+          {article.content && (
+            <div className="mb-10">
+              <p className="font-bold text-foreground mb-3 text-base md:text-lg">Brief Profile:</p>
+              <p className="text-foreground/85 leading-relaxed text-base md:text-lg whitespace-pre-line">
+                {article.content}
+              </p>
+            </div>
+          )}
+
+          {/* Mission */}
+          {a.mission && (
+            <div id="mission" className="scroll-mt-28 mb-10">
+              <SectionHeading icon={<Target className="w-5 h-5" />} title="Mission" />
+              <p className="text-foreground/85 leading-relaxed text-base md:text-lg whitespace-pre-line">
+                {a.mission}
+              </p>
+            </div>
+          )}
+
+          {/* Objectives */}
+          {objectives.length > 0 && (
+            <div id="objectives" className="scroll-mt-28 mb-10">
+              <SectionHeading icon={<ListChecks className="w-5 h-5" />} title="Objectives" />
+              <ul className="space-y-3">
+                {objectives.map((obj, i) => (
+                  <li key={i} className="flex gap-3 text-foreground/85 leading-relaxed">
+                    <span className="text-primary mt-1.5 shrink-0">●</span>
+                    <span className="whitespace-pre-line">{obj}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Academy Head */}
+          {head.name && (
+            <div id="head" className="scroll-mt-28 mb-10 bg-card border border-border rounded-2xl shadow-card p-6 md:p-8">
+              <SectionHeading icon={<User className="w-5 h-5" />} title="Academy Head" className="mb-6" />
+              <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start text-center sm:text-left">
+                <div className="w-40 sm:w-48 shrink-0 aspect-[4/5] rounded-xl overflow-hidden border border-border bg-secondary/50">
+                  {head.image ? (
+                    <img src={head.image} alt={head.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <User className="w-16 h-16 text-muted-foreground" />
+                    </div>
                   )}
                 </div>
-                <Link
-                  to="/#join-us"
-                  className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-hero px-5 py-3 text-sm font-semibold text-primary-foreground shadow-soft hover:shadow-elevated hover:-translate-y-0.5 transition-all"
-                >
-                  <Handshake className="w-4 h-4" />
-                  Join with Us
-                </Link>
+                <div className="space-y-3">
+                  <h3 className="font-playfair text-2xl font-bold text-foreground">{head.name}</h3>
+                  {head.role && <p className="text-primary font-medium">{head.role}</p>}
+                  {head.bio && (
+                    <p className="text-muted-foreground leading-relaxed text-sm">{head.bio}</p>
+                  )}
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 pt-1 justify-center sm:justify-start">
+                    {head.email && (
+                      <a href={`mailto:${head.email}`} className="flex items-center gap-2 text-primary hover:underline text-sm justify-center sm:justify-start">
+                        <Mail className="w-4 h-4" /> {head.email}
+                      </a>
+                    )}
+                    {head.phone && (
+                      <a href={`tel:${head.phone}`} className="flex items-center gap-2 text-primary hover:underline text-sm justify-center sm:justify-start">
+                        <Phone className="w-4 h-4" /> {head.phone}
+                      </a>
+                    )}
+                    {head.linkedin && (
+                      <a
+                        href={head.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
+                      >
+                        <Linkedin className="w-4 h-4" />
+                      </a>
+                    )}
+                  </div>
+                  <Link
+                    to="/#join-us"
+                    className="mt-3 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-hero px-5 py-3 text-sm font-semibold text-primary-foreground shadow-soft hover:shadow-elevated hover:-translate-y-0.5 transition-all"
+                  >
+                    <Handshake className="w-4 h-4" />
+                    Join with Us
+                  </Link>
+                </div>
               </div>
             </div>
-          </motion.div>
+          )}
 
-          {/* Part 2 — Centre Details */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-sm space-y-8"
-          >
-            <span className="inline-block text-xs font-semibold uppercase tracking-wider text-primary mb-2">
-              Part 2 — Centre Details
-            </span>
-
-            {article.content && (
-              <div>
-                <p className="text-foreground/85 leading-relaxed text-base md:text-lg whitespace-pre-line">
-                  {article.content}
-                </p>
-              </div>
-            )}
-
-            {a.mission && (
-              <SubSection icon={<Target className="w-5 h-5" />} title="Mission">
-                {a.mission}
-              </SubSection>
-            )}
-
-            {a.vision && (
-              <SubSection icon={<Eye className="w-5 h-5" />} title="Vision">
-                {a.vision}
-              </SubSection>
-            )}
-
-            {objectives.length > 0 && (
-              <div>
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
-                    <ListChecks className="w-5 h-5" />
-                  </div>
-                  <h2 className="font-playfair text-2xl font-bold text-foreground">
-                    Objectives
-                  </h2>
-                </div>
-                <ul className="space-y-3">
-                  {objectives.map((obj, i) => (
-                    <li key={i} className="flex gap-3 text-foreground/80 leading-relaxed">
-                      <span className="text-primary mt-1.5 shrink-0">●</span>
-                      <span>{obj}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {a.conclusion && (
-              <SubSection icon={<Sparkles className="w-5 h-5" />} title="Conclusion">
+          {/* Conclusion */}
+          {a.conclusion && (
+            <div id="conclusion" className="scroll-mt-28">
+              <SectionHeading icon={<Sparkles className="w-5 h-5" />} title="Conclusion" />
+              <p className="text-foreground/85 leading-relaxed text-base md:text-lg whitespace-pre-line">
                 {a.conclusion}
-              </SubSection>
-            )}
-          </motion.div>
-        </article>
+              </p>
+            </div>
+          )}
+
+          {/* Back link */}
+          <div className="mt-12 pt-6 border-t border-border">
+            <Link
+              to="/academy"
+              className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all"
+            >
+              <ArrowLeft className="w-4 h-4" /> Back to All Centres
+            </Link>
+          </div>
+        </motion.article>
       </main>
 
       <Footer />
@@ -206,22 +272,19 @@ export default function AcademyArticle() {
   );
 }
 
-function SubSection({
+function SectionHeading({
   icon,
   title,
-  children,
+  className = "",
 }: {
   icon: React.ReactNode;
   title: string;
-  children: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <div>
-      <div className="flex items-center gap-3 mb-4">
-        <div className="p-2.5 rounded-xl bg-primary/10 text-primary">{icon}</div>
-        <h2 className="font-playfair text-2xl font-bold text-foreground">{title}</h2>
-      </div>
-      <p className="text-foreground/80 leading-relaxed whitespace-pre-line">{children}</p>
+    <div className={`flex items-center gap-3 mb-4 ${className}`}>
+      <div className="p-2.5 rounded-xl bg-primary/10 text-primary">{icon}</div>
+      <h2 className="font-playfair text-2xl font-bold text-foreground">{title}</h2>
     </div>
   );
 }
