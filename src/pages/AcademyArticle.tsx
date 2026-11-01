@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowLeft, ChevronDown, ChevronUp, BookOpen, User, Mail, Phone, Linkedin, Handshake,
-  Target, ListChecks, Sparkles, ClipboardList, Info
+  Target, ListChecks, Sparkles, ClipboardList, Info, Eye
 } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
