@@ -1,8 +1,9 @@
 import { Link, useParams } from "react-router-dom";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
-  ArrowLeft, ChevronDown, BookOpen, User, Mail, Phone, Linkedin, Handshake,
-  Target, ListChecks, Sparkles
+  ArrowLeft, ChevronDown, ChevronUp, BookOpen, User, Mail, Phone, Linkedin, Handshake,
+  Target, ListChecks, Sparkles, ClipboardList, Info
 } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -12,6 +13,7 @@ import orgPhoto from "@/assets/aardo-felicitation.png.asset.json";
 export default function AcademyArticle() {
   const { id } = useParams();
   const article = academyData.articles.find((a) => a.id === id);
+  const [openGroup, setOpenGroup] = useState<string | null>("people");
 
   if (!article) {
     return (
@@ -37,26 +39,29 @@ export default function AcademyArticle() {
       ? a.objectives.split(/\n\n+/).map((s: string) => s.replace(/^•\s*/, "").trim()).filter(Boolean)
       : [];
 
-  const navItems = [
-    { id: "about", label: "About Us" },
-    { id: "vision", label: "Vision", chevron: true },
-    { id: "mission", label: "Mission", chevron: true },
-    { id: "objectives", label: "Objectives", chevron: true },
-    { id: "head", label: "Academy Head" },
-    { id: "conclusion", label: "Conclusion" },
-  ];
+  const aboutText: string =
+    a.about ||
+    `${article.shortTitle} is one of the GFSRD Global Centres of Excellence, dedicated to advancing research, knowledge exchange, capacity building, and community-driven action in its field. The centre brings together experts, practitioners, and partner institutions from around the world to develop practical solutions for sustainable rural development.`;
+
+  const planText: string =
+    a.plan ||
+    `The strategic plan and roadmap for this centre — including upcoming programs, research priorities, and partnership goals — will be published here soon.`;
 
   const scrollTo = (sectionId: string) => {
     const el = document.getElementById(sectionId);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const toggleGroup = (key: string) => {
+    setOpenGroup((prev) => (prev === key ? null : key));
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
-      {/* ===== Banner strip: photo left, logo + centre name right ===== */}
-      <section className="bg-primary text-primary-foreground">
+      {/* ===== Banner strip: photo left, logo + centre name right (below fixed header) ===== */}
+      <section className="bg-primary text-primary-foreground pt-24">
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] items-stretch">
           {/* Photo strip */}
           <div className="h-40 md:h-[230px] overflow-hidden">
@@ -98,22 +103,69 @@ export default function AcademyArticle() {
             <span className="font-playfair text-lg font-semibold tracking-wide">Quick View</span>
           </div>
           <nav className="flex flex-col">
-            <Link
-              to="/academy"
-              className="px-5 py-3.5 text-sm font-semibold uppercase tracking-wide bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+            <button
+              onClick={() => scrollTo("about")}
+              className="px-5 py-3.5 text-sm font-semibold uppercase tracking-wide text-foreground/80 bg-card hover:bg-muted transition-colors text-left"
             >
-              All Centres
-            </Link>
-            {navItems.map((item) => (
+              About Us
+            </button>
+            <button
+              onClick={() => scrollTo("vision")}
+              className="px-5 py-3.5 text-sm font-semibold uppercase tracking-wide text-foreground/80 bg-card hover:bg-muted transition-colors border-t border-border text-left"
+            >
+              Vision
+            </button>
+            <button
+              onClick={() => scrollTo("mission")}
+              className="px-5 py-3.5 text-sm font-semibold uppercase tracking-wide text-foreground/80 bg-card hover:bg-muted transition-colors border-t border-border text-left"
+            >
+              Mission
+            </button>
+            <button
+              onClick={() => scrollTo("objectives")}
+              className="px-5 py-3.5 text-sm font-semibold uppercase tracking-wide text-foreground/80 bg-card hover:bg-muted transition-colors border-t border-border text-left"
+            >
+              Objectives
+            </button>
+            <button
+              onClick={() => scrollTo("plan")}
+              className="px-5 py-3.5 text-sm font-semibold uppercase tracking-wide text-foreground/80 bg-card hover:bg-muted transition-colors border-t border-border text-left"
+            >
+              Plan
+            </button>
+
+            {/* People — expandable group */}
+            <div className="border-t border-border bg-card">
               <button
-                key={item.id}
-                onClick={() => scrollTo(item.id)}
-                className="flex items-center justify-between px-5 py-3.5 text-sm font-semibold uppercase tracking-wide text-foreground/80 bg-card hover:bg-muted transition-colors border-t border-border text-left"
+                onClick={() => toggleGroup("people")}
+                className="w-full flex items-center justify-between px-5 py-3.5 text-sm font-semibold uppercase tracking-wide text-foreground/80 hover:bg-muted transition-colors text-left"
               >
-                {item.label}
-                {item.chevron && <ChevronDown className="w-4 h-4 text-muted-foreground" />}
+                People
+                {openGroup === "people" ? (
+                  <ChevronUp className="w-4 h-4 text-muted-foreground" />
+                ) : (
+                  <ChevronDown className="w-4 h-4 text-muted-foreground" />
+                )}
               </button>
-            ))}
+              {openGroup === "people" && (
+                <div className="pb-2">
+                  <button
+                    onClick={() => scrollTo("head")}
+                    className="flex items-center gap-2.5 pl-8 pr-5 py-2.5 text-sm font-semibold uppercase tracking-wide text-foreground/80 hover:bg-muted transition-colors w-full text-left"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                    Academy Head
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <button
+              onClick={() => scrollTo("conclusion")}
+              className="px-5 py-3.5 text-sm font-semibold uppercase tracking-wide text-foreground/80 bg-card hover:bg-muted transition-colors border-t border-border text-left"
+            >
+              Conclusion
+            </button>
           </nav>
         </aside>
 
@@ -124,44 +176,26 @@ export default function AcademyArticle() {
           transition={{ duration: 0.4 }}
         >
           {/* Title + rule */}
-          <div id="about" className="scroll-mt-28 mb-8">
+          <div className="mb-8">
             <h2 className="font-playfair text-2xl md:text-3xl font-bold text-primary leading-snug pb-4 border-b border-border">
               {article.title}
             </h2>
           </div>
 
+          {/* About Us */}
+          <div id="about" className="scroll-mt-28 mb-10">
+            <SectionHeading icon={<Info className="w-5 h-5" />} title="About Us" />
+            <p className="text-foreground/85 leading-relaxed text-base md:text-lg whitespace-pre-line">
+              {aboutText}
+            </p>
+          </div>
+
           {/* Vision */}
           {a.vision && (
-            <p id="vision" className="scroll-mt-28 text-foreground/85 leading-relaxed text-base md:text-lg mb-8">
-              <span className="font-bold text-foreground">Our Vision:</span>{" "}
-              <span className="whitespace-pre-line">{a.vision}</span>
-            </p>
-          )}
-
-          {/* Contact line */}
-          {(head.email || head.phone) && (
-            <div className="space-y-1.5 mb-8 text-foreground/85">
-              {head.email && (
-                <p>
-                  <span className="font-bold text-foreground">Email: </span>
-                  <a href={`mailto:${head.email}`} className="text-primary hover:underline">{head.email}</a>
-                </p>
-              )}
-              {head.phone && (
-                <p>
-                  <span className="font-bold text-foreground">Phone: </span>
-                  <a href={`tel:${head.phone}`} className="text-primary hover:underline">{head.phone}</a>
-                </p>
-              )}
-            </div>
-          )}
-
-          {/* Brief profile */}
-          {article.content && (
-            <div className="mb-10">
-              <p className="font-bold text-foreground mb-3 text-base md:text-lg">Brief Profile:</p>
+            <div id="vision" className="scroll-mt-28 mb-10">
+              <SectionHeading icon={<Eye className="w-5 h-5" />} title="Vision" />
               <p className="text-foreground/85 leading-relaxed text-base md:text-lg whitespace-pre-line">
-                {article.content}
+                {a.vision}
               </p>
             </div>
           )}
@@ -190,6 +224,14 @@ export default function AcademyArticle() {
               </ul>
             </div>
           )}
+
+          {/* Plan */}
+          <div id="plan" className="scroll-mt-28 mb-10">
+            <SectionHeading icon={<ClipboardList className="w-5 h-5" />} title="Plan" />
+            <p className="text-foreground/85 leading-relaxed text-base md:text-lg whitespace-pre-line">
+              {planText}
+            </p>
+          </div>
 
           {/* Academy Head */}
           {head.name && (
